@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/15 15:57:13 by sdanel           ###   ########.fr       */
+/*   Created: 2023/06/15 15:54:47 by sdanel            #+#    #+#             */
+/*   Updated: 2023/06/15 16:00:09 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "cub3d.h"
 
-# include "../libft/libft.h"
-# include "mlx.h"
-# include <X11/X.h>
-# include <X11/keysym.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
-
-typedef struct s_map
+void    freetab(char **tab)
 {
-	int		file;
-	int		nbline;
-	int		sizeline;
-	char	**map;
-}			t_map;
+    int i;
 
-// get_cubfile
-
-// main
-
-// free
-void		freetab(char **table);
-
-#endif
+    i = 0;
+    while (tab[i])
+    {
+        free(tab[i]);
+        i++;
+    }
+    free(tab);
+}

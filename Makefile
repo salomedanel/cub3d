@@ -7,7 +7,8 @@ DIRLIB = ./libft/
 DIRMLX = ./mlx/
 
 SRC =	main \
-
+		free \
+		
 SRCS = $(addprefix ${DIRSRC}, $(addsuffix .c, ${SRC}))
 
 OBJS = ${SRCS:.c=.o}

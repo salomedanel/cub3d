@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:22:56 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/15 14:44:38 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/15 16:04:02 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,56 @@ int	check_arg(int argc, char **argv)
 	}
 }
 
-int	malloc_map(t_map *map)
+int	size_map(t_map *map)
 {
-	int	i;
+	int		i;
+	char	*line;
 
 	i = 0;
-	map->line
+	map->nbline = 0;
+	map->sizeline = 0;
+	line = get_next_line(map->file, 0);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(map->file, 0);
+		map->nbline++;
+		if (map->sizeline < ft_strlen(line))
+			map->sizeline = ft_strlen(line);
+		//printf("%s", line);
 	}
+	free(line);
+	if (map->nbline < 9)
+	{
+		close(map->file);
+		//free(line);
+		return (printf("Error\nIncomplete file: missing info or map\n"), -1);
+	}
+	return (0);
+}
+
+int	get_map(t_map *map)
+{
+	int		i;
+	char	*line;
+
+	i = 0;
+	map->map = malloc(sizeof(char *) * map->nbline);
+	if (map->map == NULL)
+		return (printf("Error\nMalloc failed\n"), -1);
+	line = get_next_line(map->file, 0);
+	while (line)
+	{
+		map->map[i] = malloc(sizeof(char) * map->sizeline);
+		line = get_next_line(map->file, 0);
+		ft_strlcpy(map->map[i], line, map->sizeline);
+		printf("%s\n", map->map[i]);
+		free(line);
+		i++;
+	}
+	free(line);
+	map->map[i] = NULL;
+	close(map->file);
 	return (0);
 }
 
@@ -66,5 +109,9 @@ int	main(int argc, char **argv)
 	map.file = check_arg(argc, argv);
 	if (map.file < 0)
 		return (-1);
+	if (size_map(&map) == -1)
+		return (0);
+	get_map(&map);
+	freetab(map.map);
 	return (0);
 }
