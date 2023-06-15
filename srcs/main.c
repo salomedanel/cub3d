@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:22:56 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/15 14:01:40 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/15 14:44:38 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,16 @@ int	check_arg(int argc, char **argv)
 		file = check_file(argv, file);
 		return (file);
 	}
+}
+
+int	malloc_map(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	map->line
+	}
+	return (0);
 }
 
 int	main(int argc, char **argv)

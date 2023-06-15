@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/15 13:30:39 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/15 14:44:51 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct    s_map
     int     file;
     int     nbline;
     int     sizeline;
+    char    *line;
     char    **map;
 }				t_map;
 
