@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:22:56 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/15 16:04:02 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/19 14:02:31 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,41 +65,65 @@ int	size_map(t_map *map)
 		map->nbline++;
 		if (map->sizeline < ft_strlen(line))
 			map->sizeline = ft_strlen(line);
-		//printf("%s", line);
 	}
 	free(line);
 	if (map->nbline < 9)
 	{
 		close(map->file);
-		//free(line);
 		return (printf("Error\nIncomplete file: missing info or map\n"), -1);
 	}
+	close(map->file);
 	return (0);
 }
 
-int	get_map(t_map *map)
+int	get_map(t_map *map, char **argv)
 {
 	int		i;
+	int		j;
 	char	*line;
 
 	i = 0;
-	map->map = malloc(sizeof(char *) * map->nbline);
+	map->file = open(argv[1], O_RDONLY);
+	map->map = malloc(sizeof(char *) * (map->nbline + 1));
 	if (map->map == NULL)
 		return (printf("Error\nMalloc failed\n"), -1);
-	line = get_next_line(map->file, 0);
-	while (line)
+	while (i < map->nbline)
 	{
-		map->map[i] = malloc(sizeof(char) * map->sizeline);
+		map->map[i] = malloc(sizeof(char) * (map->sizeline + 1));
 		line = get_next_line(map->file, 0);
-		ft_strlcpy(map->map[i], line, map->sizeline);
-		printf("%s\n", map->map[i]);
+		j = 0;
+		while (line[j])
+		{
+			map->map[i][j] = line[j];
+			j++;
+		}
+		if (j < map->sizeline)
+		{
+			while (j < map->sizeline)
+			{
+				map->map[i][j] = 31;
+				j++;
+			}
+		}
+		map->map[i][j] = '\0';
 		free(line);
 		i++;
 	}
-	free(line);
 	map->map[i] = NULL;
 	close(map->file);
 	return (0);
+}
+
+void	print_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		printf("%s", map[i]);
+		i++;
+	}
 }
 
 int	main(int argc, char **argv)
@@ -111,7 +135,8 @@ int	main(int argc, char **argv)
 		return (-1);
 	if (size_map(&map) == -1)
 		return (0);
-	get_map(&map);
+	get_map(&map, argv);
+	print_map(map.map);
 	freetab(map.map);
 	return (0);
 }
