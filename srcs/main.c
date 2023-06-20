@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:22:56 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/19 14:02:31 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/20 11:54:45 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,83 +49,6 @@ int	check_arg(int argc, char **argv)
 	}
 }
 
-int	size_map(t_map *map)
-{
-	int		i;
-	char	*line;
-
-	i = 0;
-	map->nbline = 0;
-	map->sizeline = 0;
-	line = get_next_line(map->file, 0);
-	while (line)
-	{
-		free(line);
-		line = get_next_line(map->file, 0);
-		map->nbline++;
-		if (map->sizeline < ft_strlen(line))
-			map->sizeline = ft_strlen(line);
-	}
-	free(line);
-	if (map->nbline < 9)
-	{
-		close(map->file);
-		return (printf("Error\nIncomplete file: missing info or map\n"), -1);
-	}
-	close(map->file);
-	return (0);
-}
-
-int	get_map(t_map *map, char **argv)
-{
-	int		i;
-	int		j;
-	char	*line;
-
-	i = 0;
-	map->file = open(argv[1], O_RDONLY);
-	map->map = malloc(sizeof(char *) * (map->nbline + 1));
-	if (map->map == NULL)
-		return (printf("Error\nMalloc failed\n"), -1);
-	while (i < map->nbline)
-	{
-		map->map[i] = malloc(sizeof(char) * (map->sizeline + 1));
-		line = get_next_line(map->file, 0);
-		j = 0;
-		while (line[j])
-		{
-			map->map[i][j] = line[j];
-			j++;
-		}
-		if (j < map->sizeline)
-		{
-			while (j < map->sizeline)
-			{
-				map->map[i][j] = 31;
-				j++;
-			}
-		}
-		map->map[i][j] = '\0';
-		free(line);
-		i++;
-	}
-	map->map[i] = NULL;
-	close(map->file);
-	return (0);
-}
-
-void	print_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		printf("%s", map[i]);
-		i++;
-	}
-}
-
 int	main(int argc, char **argv)
 {
 	t_map	map;
@@ -137,6 +60,8 @@ int	main(int argc, char **argv)
 		return (0);
 	get_map(&map, argv);
 	print_map(map.map);
+	if (parse_texture(&map) == -1)
+		return (0);
 	freetab(map.map);
 	return (0);
 }

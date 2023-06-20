@@ -7,6 +7,8 @@ DIRLIB = ./libft/
 DIRMLX = ./mlx/
 
 SRC =	main \
+		get_map \
+		parse_map \
 		free \
 		
 SRCS = $(addprefix ${DIRSRC}, $(addsuffix .c, ${SRC}))

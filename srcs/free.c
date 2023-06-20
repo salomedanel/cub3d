@@ -6,21 +6,21 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:54:47 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/15 16:00:09 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/20 11:08:00 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void    freetab(char **tab)
+void	freetab(char **tab)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (tab[i])
-    {
-        free(tab[i]);
-        i++;
-    }
-    free(tab);
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }
