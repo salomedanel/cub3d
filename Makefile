@@ -9,6 +9,7 @@ DIRMLX = ./mlx/
 SRC =	main \
 		get_map \
 		parse_map \
+		get_texture \
 		free \
 		
 SRCS = $(addprefix ${DIRSRC}, $(addsuffix .c, ${SRC}))

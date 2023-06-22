@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/20 14:05:21 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/22 14:56:16 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,18 @@ void		print_map(char **map);
 
 // parse_map
 int			start_map(t_map *map);
-char		*ft_cpytexture(char *texture, int *counter);
 int			parse_texture(t_map *map);
+int			parse_texture_path(t_map *map);
+
+//get_texture
+void		get_texture_no(char *path, int *counter, char *direction,
+				t_map *map);
+void		get_texture_so(char *path, int *counter, char *direction,
+				t_map *map);
+void		get_texture_we(char *path, int *counter, char *direction,
+				t_map *map);
+void		get_texture_ea(char *path, int *counter, char *direction,
+				t_map *map);
 
 // main
 int			check_file(char **argv, int file);

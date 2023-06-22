@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:22:56 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/20 11:54:45 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/22 14:55:58 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	main(int argc, char **argv)
 	get_map(&map, argv);
 	print_map(map.map);
 	if (parse_texture(&map) == -1)
+		return (0);
+	if (parse_texture_path(&map) == -1)
 		return (0);
 	freetab(map.map);
 	return (0);
