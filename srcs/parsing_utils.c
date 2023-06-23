@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:44:24 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/23 13:36:33 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/23 15:41:06 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,22 @@ int	ft_unsigned_atoi(const char *nptr)
 			printf("Error\nInvalid color id\n");
 			exit(0);
 		}
-        i++;
+		i++;
 	}
 	i = -1;
 	while (nptr[++i] >= '0' && nptr[i] <= '9')
 		res = res * 10 + (nptr[i] - '0');
 	return (res);
+}
+
+void	print_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		printf("%s", map[i]);
+		i++;
+	}
 }

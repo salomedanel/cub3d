@@ -6,29 +6,11 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 11:32:17 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/23 13:33:43 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/23 15:52:56 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	start_map(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (map->map[i])
-	{
-		if (ft_strncmp("1", map->map[i], 1) == 0)
-			return (i);
-		else if (ft_strncmp(" ", map->map[i], 1) == 0)
-			return (i);
-		else if (ft_strncmp("0", map->map[i], 1) == 0)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
 
 int	parse_texture(t_map *map)
 {
@@ -57,16 +39,6 @@ int	parse_texture(t_map *map)
 	}
 	if (counter != 6)
 		return (printf("%s\n", ERR_TXT), -1);
-	return (0);
-}
-
-int	parse_texture_path(t_map *map)
-{
-	if (access(map->no, F_OK) != 0 || access(map->so, F_OK) != 0
-		|| access(map->we, F_OK) != 0 || access(map->ea, F_OK) != 0)
-		return (printf("Wrong texture path\n"), -1);
-	else
-		printf("Texture path OK\n");
 	return (0);
 }
 
@@ -107,8 +79,76 @@ int	parse_fc(t_map *map)
 			return (printf("%s\n", ERR_FC), -1);
 		i++;
 	}
-	printf("Floor and ceiling OK\n");
 	freetab(map->f);
 	freetab(map->c);
 	return (0);
 }
+
+int	check_emptymap(t_map *map)
+{
+	int	i;
+
+	i = map->startline - 1;
+	if (map->startline == -1)
+		return (printf("Error\nNo map\n"), -1);
+	while (map->map[++i])
+	{
+		if (map->map[i][0] == '\n')
+			return (printf("Error\nEmpty line in map - line %d\n", i), -1);
+	}
+	return (0);
+}
+
+int	check_mapchar(t_map *map)
+{
+	int		i;
+	int		j;
+
+	i = map->startline;
+	while (map->map[i])
+	{
+		j = 0;
+		while (map->map[i][j])
+		{
+			if (map->map[i][j] != 'N' || map->map[i][j] != 'S'
+				|| map->map[i][j] != 'E' || map->map[i][j] != 'W'
+				|| map->map[i][j] != '0' || map->map[i][j] != '1')
+				return (printf("Error\nInvalid character in map\n"), -1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+int	get_playerpos(t_map *map)
+{
+	int		i;
+	int		j;
+	int		counter;
+	t_pos	ppos;
+
+	i = map->startline;
+	counter = 0;
+	while (map->map[i])
+	{
+		j = 0;
+		while (map->map[i][j])
+		{
+			if (map->map[i][j] == 'N' || map->map[i][j] != 'S'
+				|| map->map[i][j] != 'E' || map->map[i][j] != 'W')
+			{
+				ppos.x = i;
+				ppos.y = j;
+				ppos.dir = map->map[i][j];
+				counter++;
+			}
+			j++;
+		}
+		i++;
+	}
+	if (counter > 1)
+		return (printf("Error\nMultiple player positions\n"), -1);
+	return (0);
+}
+

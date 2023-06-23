@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/23 14:37:00 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/23 15:52:18 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,30 @@ typedef struct s_map
 	int		colors[6];
 }			t_map;
 
+typedef struct s_pos
+{
+	int		x;
+	int		y;
+	char	dir;
+}		t_pos;
+
 // get_map
+int
+start_map(t_map *map);
 int			size_map(t_map *map);
 void		cpy_map(t_map *map, char *line, int *i);
 int			get_map(t_map *map, char **argv);
-void		print_map(char **map);
+void		final_map(t_map *map);
 
 // parse_map
-int			start_map(t_map *map);
 int			parse_texture(t_map *map);
-int			parse_texture_path(t_map *map);
 int			parse_fc(t_map *map);
-int			parse_map(t_map *map);
+int			check_emptymap(t_map *map);
+int			check_mapchar(t_map *map);
+int			get_playerpos(t_map *map);
 
 //get_texture
+int			parse_texture_path(t_map *map);
 void		get_texture_no(char *path, int *counter, char *direction,
 				t_map *map);
 void		get_texture_so(char *path, int *counter, char *direction,
@@ -67,6 +77,7 @@ void		get_texture_ea(char *path, int *counter, char *direction,
 // parsing_utils
 int			contains_comma(char *str);
 int			ft_unsigned_atoi(const char *nptr);
+void		print_map(char **map);
 
 // main
 int			check_file(char **argv, int file);

@@ -6,11 +6,29 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 11:05:55 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/23 14:37:15 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/23 15:39:49 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	start_map(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (map->map[i])
+	{
+		if (ft_strncmp("1", map->map[i], 1) == 0)
+			return (i);
+		else if (ft_strncmp(" ", map->map[i], 1) == 0)
+			return (i);
+		else if (ft_strncmp("0", map->map[i], 1) == 0)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
 
 int	size_map(t_map *map)
 {
@@ -71,24 +89,26 @@ int	get_map(t_map *map, char **argv)
 		cpy_map(map, line, &i);
 	map->map[i] = NULL;
 	close(map->file);
-	//free(line);
 	return (0);
 }
 
-int	parse_map(t_map *map)
-{
-	printf("start line = %d\n", map->startline);
-	return 0;
-}
-
-void	print_map(char **map)
+void	final_map(t_map *map)
 {
 	int	i;
+	int	j;
 
-	i = 0;
-	while (map[i])
+	i = map->startline;
+	while (map->map[i])
 	{
-		printf("%s", map[i]);
+		j = 0;
+		while (j < map->sizeline)
+		{
+			if (map->map[i][j] == ' ' || map->map[i][j] == '\t'
+				|| map->map[i][j] == '\n' || map->map[i][j] == '\0')
+				map->map[i][j] = '1';
+			j++;
+		}
+		map->map[i][j] = '\n';
 		i++;
 	}
 }

@@ -6,11 +6,19 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:45:29 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/23 13:34:07 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/23 15:36:43 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	parse_texture_path(t_map *map)
+{
+	if (access(map->no, F_OK) != 0 || access(map->so, F_OK) != 0
+		|| access(map->we, F_OK) != 0 || access(map->ea, F_OK) != 0)
+		return (printf("Wrong texture path\n"), -1);
+	return (0);
+}
 
 void	get_texture_no(char *path, int *counter, char *direction, t_map *map)
 {

@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:22:56 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/23 14:36:39 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/23 15:54:13 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,20 @@ int	main(int argc, char **argv)
 	if (size_map(&map) == -1)
 		return (0);
 	get_map(&map, argv);
-	print_map(map.map);
 	if (parse_texture(&map) == -1)
 		return (0);
 	if (parse_texture_path(&map) == -1)
 		return (0);
 	if (parse_fc(&map) == -1)
 		return (0);
-	parse_map(&map);
+	if (check_emptymap(&map) == -1)
+		return (0);
+	final_map(&map);
+	if (check_mapchar(&map) == -1)
+		return (0);
+	if (get_playerpos(&map) == -1)
+		return (0);
+	print_map(map.map);
 	freetab(map.map);
 	free_texture(&map);
 	return (0);
