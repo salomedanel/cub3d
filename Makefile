@@ -10,6 +10,7 @@ SRC =	main \
 		get_map \
 		parse_map \
 		get_texture \
+		parsing_utils \
 		free \
 		
 SRCS = $(addprefix ${DIRSRC}, $(addsuffix .c, ${SRC}))

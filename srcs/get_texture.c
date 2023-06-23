@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:45:29 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/22 14:48:06 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/23 13:34:07 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	get_texture_no(char *path, int *counter, char *direction, t_map *map)
 		map->no = malloc(sizeof(char) * (ft_strlen(path) - 2));
 		while (path[i] && path[i] == ' ')
 			i++;
-		while (path[i])
+		while (path[i] && path[i] != '\n')
 		{
 			map->no[j] = path[i];
 			i++;
@@ -48,7 +48,7 @@ void	get_texture_so(char *path, int *counter, char *direction, t_map *map)
 		map->so = malloc(sizeof(char) * (ft_strlen(path) - 2));
 		while (path[i] && path[i] == ' ')
 			i++;
-		while (path[i])
+		while (path[i] && path[i] != '\n')
 		{
 			map->so[j] = path[i];
 			i++;
@@ -72,7 +72,7 @@ void	get_texture_we(char *path, int *counter, char *direction, t_map *map)
 		map->we = malloc(sizeof(char) * (ft_strlen(path) - 2));
 		while (path[i] && path[i] == ' ')
 			i++;
-		while (path[i])
+		while (path[i] && path[i] != '\n')
 		{
 			map->we[j] = path[i];
 			i++;
@@ -96,7 +96,7 @@ void	get_texture_ea(char *path, int *counter, char *direction, t_map *map)
 		map->ea = malloc(sizeof(char) * (ft_strlen(path) - 2));
 		while (path[i] && path[i] == ' ')
 			i++;
-		while (path[i])
+		while (path[i] && path[i] != '\n')
 		{
 			map->ea[j] = path[i];
 			i++;

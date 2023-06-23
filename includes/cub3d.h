@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/22 14:56:16 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/23 14:37:00 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,24 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define ERR_TXT "Error\nWrong texture path or map before texture."
+# define ERR_TXT "Error\nWrong or missing texture path."
+# define ERR_PLACE "Error\nMap before texture."
+# define ERR_FC "Error\nWrong floor or ceiling color id."
 
 typedef struct s_map
 {
 	int		file;
 	int		nbline;
 	int		sizeline;
+	int		startline;
 	char	**map;
 	char	*no;
 	char	*so;
 	char	*we;
 	char	*ea;
-	char	*f;
-	char	*c;
+	char	**f;
+	char	**c;
+	int		colors[6];
 }			t_map;
 
 // get_map
@@ -47,6 +51,8 @@ void		print_map(char **map);
 int			start_map(t_map *map);
 int			parse_texture(t_map *map);
 int			parse_texture_path(t_map *map);
+int			parse_fc(t_map *map);
+int			parse_map(t_map *map);
 
 //get_texture
 void		get_texture_no(char *path, int *counter, char *direction,
@@ -58,11 +64,16 @@ void		get_texture_we(char *path, int *counter, char *direction,
 void		get_texture_ea(char *path, int *counter, char *direction,
 				t_map *map);
 
+// parsing_utils
+int			contains_comma(char *str);
+int			ft_unsigned_atoi(const char *nptr);
+
 // main
 int			check_file(char **argv, int file);
 int			check_arg(int argc, char **argv);
 
 // free
 void		freetab(char **table);
+void		free_texture(t_map *map);
 
 #endif

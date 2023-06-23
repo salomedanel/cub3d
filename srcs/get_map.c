@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 11:05:55 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/20 11:31:46 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/23 14:37:15 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,6 @@ void	cpy_map(t_map *map, char *line, int *i)
 		map->map[*i][j] = line[j];
 		j++;
 	}
-	// if (j < map->sizeline)
-	// {
-	// 	while (j < map->sizeline)
-	// 	{
-	// 		map->map[*i][j] = '1';
-	// 		j++;
-	// 	}
-	// }
 	map->map[*i][j] = '\0';
 	free(line);
 	*i = *i + 1;
@@ -79,7 +71,14 @@ int	get_map(t_map *map, char **argv)
 		cpy_map(map, line, &i);
 	map->map[i] = NULL;
 	close(map->file);
+	//free(line);
 	return (0);
+}
+
+int	parse_map(t_map *map)
+{
+	printf("start line = %d\n", map->startline);
+	return 0;
 }
 
 void	print_map(char **map)
