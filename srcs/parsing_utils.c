@@ -19,7 +19,7 @@ int	contains_comma(char *str)
 
 	i = 0;
 	comma = 0;
-	while (str[i])
+	while (str[i] != '\n')
 	{
 		if (str[i] == ',')
 			comma++;
@@ -28,7 +28,7 @@ int	contains_comma(char *str)
 	return (comma);
 }
 
-int	ft_unsigned_atoi(const char *nptr)
+int	ft_unsigned_atoi(t_map *map, const char *nptr, int malloc)
 {
 	int	res;
 	int	i;
@@ -37,15 +37,27 @@ int	ft_unsigned_atoi(const char *nptr)
 	i = 0;
 	if (nptr[i] && nptr[i] == '-')
 	{
-		printf("Error\nNegative color id\n");
-		exit(0);
+		if (malloc == 1)
+			freetab(map->f);
+		if (malloc == 2)
+		{
+			freetab(map->f);
+			freetab(map->c);
+		}
+		exit_parserror(map, "Error\nInvalid color id\n");
 	}
 	while (nptr[i])
 	{
 		if ((nptr[i] < '0' || nptr[i] > '9') && nptr[i] != '\n')
 		{
-			printf("Error\nInvalid color id\n");
-			exit(0);
+			if (malloc == 1)
+				freetab(map->f);
+			if (malloc == 2)
+			{
+				freetab(map->f);
+				freetab(map->c);
+			}
+			exit_parserror(map, "Error\nInvalid color id\n");
 		}
 		i++;
 	}

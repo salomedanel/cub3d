@@ -21,8 +21,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define ERR_TXT "Error\nWrong or missing texture path."
-# define ERR_PLACE "Error\nMap before texture."
+// # define ERR_TXT "Error\nWrong or missing texture path."
+# define ERR_PLACE "Error\nMap before texture or missing texture info."
 # define ERR_FC "Error\nWrong floor or ceiling color id."
 
 typedef struct s_map
@@ -49,8 +49,7 @@ typedef struct s_pos
 }		t_pos;
 
 // get_map
-int
-start_map(t_map *map);
+int			start_map(t_map *map);
 int			size_map(t_map *map);
 void		cpy_map(t_map *map, char *line, int *i);
 int			get_map(t_map *map, char **argv);
@@ -59,9 +58,10 @@ void		final_map(t_map *map);
 // parse_map
 int			parse_texture(t_map *map);
 int			parse_fc(t_map *map);
-int			check_emptymap(t_map *map);
+int			check_emptyline(t_map *map);
 int			check_mapchar(t_map *map);
 int			get_playerpos(t_map *map);
+int			map_outline(t_map *map);
 
 //get_texture
 int			parse_texture_path(t_map *map);
@@ -76,15 +76,17 @@ void		get_texture_ea(char *path, int *counter, char *direction,
 
 // parsing_utils
 int			contains_comma(char *str);
-int			ft_unsigned_atoi(const char *nptr);
+int			ft_unsigned_atoi(t_map *map, const char *nptr, int malloc);
 void		print_map(char **map);
 
 // main
+void		init_data(t_map *map);
 int			check_file(char **argv, int file);
 int			check_arg(int argc, char **argv);
 
 // free
 void		freetab(char **table);
 void		free_texture(t_map *map);
+int			exit_parserror(t_map *map, char *err);
 
 #endif

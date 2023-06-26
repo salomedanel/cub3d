@@ -27,8 +27,21 @@ void	freetab(char **tab)
 
 void	free_texture(t_map *map)
 {
-	free(map->no);
-	free(map->so);
-	free(map->we);
-	free(map->ea);
+	if (map->no)
+		free(map->no);
+	if (map->so)
+		free(map->so);
+	if (map->we)
+		free(map->we);
+	if (map->ea)
+		free(map->ea);
+}
+
+int	exit_parserror(t_map *map, char *err)
+{
+	ft_printf("%s\n", err);
+	if (map->map)
+		freetab(map->map);
+	free_texture(map);
+	exit (0);
 }

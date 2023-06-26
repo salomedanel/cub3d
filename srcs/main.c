@@ -12,6 +12,14 @@
 
 #include "cub3d.h"
 
+void	init_data(t_map *map)
+{
+	map->no = NULL;
+	map->so = NULL;
+	map->we = NULL;
+	map->ea = NULL;
+}
+
 int	check_file(char **argv, int file)
 {
 	file = open(argv[1], O_DIRECTORY);
@@ -65,14 +73,15 @@ int	main(int argc, char **argv)
 		return (0);
 	if (parse_fc(&map) == -1)
 		return (0);
-	if (check_emptymap(&map) == -1)
+	if (check_emptyline(&map) == -1)
 		return (0);
 	final_map(&map);
+	print_map(map.map);
 	if (check_mapchar(&map) == -1)
 		return (0);
 	if (get_playerpos(&map) == -1)
 		return (0);
-	print_map(map.map);
+	map_outline(&map);
 	freetab(map.map);
 	free_texture(&map);
 	return (0);

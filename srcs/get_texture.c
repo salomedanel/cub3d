@@ -16,7 +16,7 @@ int	parse_texture_path(t_map *map)
 {
 	if (access(map->no, F_OK) != 0 || access(map->so, F_OK) != 0
 		|| access(map->we, F_OK) != 0 || access(map->ea, F_OK) != 0)
-		return (printf("Wrong texture path\n"), -1);
+		return (exit_parserror(map, "Wrong texture path\n"));
 	return (0);
 }
 

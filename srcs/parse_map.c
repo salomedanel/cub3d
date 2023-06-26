@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 11:32:17 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/23 15:52:56 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/26 13:55:57 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	parse_texture(t_map *map)
 
 	i = -1;
 	counter = 0;
+	init_data(map);
 	map->startline = start_map(map);
 	while (map->map[++i])
 	{
@@ -35,48 +36,52 @@ int	parse_texture(t_map *map)
 		else if (ft_strncmp("C", map->map[i], 1) == 0)
 			counter++;
 		if (i == map->startline && counter != 6)
-			return (printf("%s\n", ERR_PLACE), -1);
+			return (exit_parserror(map, ERR_PLACE));
 	}
 	if (counter != 6)
-		return (printf("%s\n", ERR_TXT), -1);
+		return (exit_parserror(map, ERR_PLACE));
 	return (0);
 }
 
 int	parse_fc(t_map *map)
 {
 	int	i;
+	int	fc_malloc;
 
 	i = -1;
+	fc_malloc = 0;
 	while (map->map[++i])
 	{
 		if (ft_strncmp("F", map->map[i], 1) == 0)
 		{
 			if (contains_comma(map->map[i]) != 2)
-				return (printf("%s\n", ERR_FC), -1);
+				return (exit_parserror(map, ERR_FC));
 			map->f = ft_split(map->map[i], ',');
 			if (map->f[0] == NULL || map->f[1] == NULL || map->f[2] == NULL)
-				return (printf("%s\n", ERR_FC), -1);
-			map->colors[0] = ft_unsigned_atoi(map->f[0] + 2);
-			map->colors[1] = ft_unsigned_atoi(map->f[1]);
-			map->colors[2] = ft_unsigned_atoi(map->f[2]);
+				return (exit_parserror(map, ERR_FC));
+			fc_malloc = 1;
+			map->colors[0] = ft_unsigned_atoi(map, map->f[0] + 2, fc_malloc);
+			map->colors[1] = ft_unsigned_atoi(map, map->f[1], fc_malloc);
+			map->colors[2] = ft_unsigned_atoi(map, map->f[2], fc_malloc);
 		}
 		else if (ft_strncmp("C", map->map[i], 1) == 0)
 		{
 			if (contains_comma(map->map[i]) != 2)
-				return (printf("%s\n", ERR_FC), -1);
+				return (freetab(map->f), exit_parserror(map, ERR_FC));
 			map->c = ft_split(map->map[i], ',');
 			if (map->c[0] == NULL || map->c[1] == NULL || map->c[2] == NULL)
-				return (printf("%s\n", ERR_FC), -1);
-			map->colors[3] = ft_unsigned_atoi(map->c[0] + 2);
-			map->colors[4] = ft_unsigned_atoi(map->c[1]);
-			map->colors[5] = ft_unsigned_atoi(map->c[2]);
+				return (exit_parserror(map, ERR_FC));
+			fc_malloc = 2;
+			map->colors[3] = ft_unsigned_atoi(map, map->c[0] + 2, fc_malloc);
+			map->colors[4] = ft_unsigned_atoi(map, map->c[1], fc_malloc);
+			map->colors[5] = ft_unsigned_atoi(map, map->c[2], fc_malloc);
 		}
 	}
 	i = 0;
 	while (i < 6)
 	{
 		if (map->colors[i] > 255)
-			return (printf("%s\n", ERR_FC), -1);
+			return (freetab(map->f), freetab(map->c), exit_parserror(map, ERR_FC));
 		i++;
 	}
 	freetab(map->f);
@@ -84,17 +89,17 @@ int	parse_fc(t_map *map)
 	return (0);
 }
 
-int	check_emptymap(t_map *map)
+int	check_emptyline(t_map *map)
 {
 	int	i;
 
 	i = map->startline - 1;
 	if (map->startline == -1)
-		return (printf("Error\nNo map\n"), -1);
+		return (exit_parserror(map, "Error\nNo map\n"));
 	while (map->map[++i])
 	{
 		if (map->map[i][0] == '\n')
-			return (printf("Error\nEmpty line in map - line %d\n", i), -1);
+			return (exit_parserror(map, "Error\nEmpty line in map\n"));
 	}
 	return (0);
 }
@@ -108,12 +113,12 @@ int	check_mapchar(t_map *map)
 	while (map->map[i])
 	{
 		j = 0;
-		while (map->map[i][j])
+		while (map->map[i][j] != '\n')
 		{
-			if (map->map[i][j] != 'N' || map->map[i][j] != 'S'
-				|| map->map[i][j] != 'E' || map->map[i][j] != 'W'
-				|| map->map[i][j] != '0' || map->map[i][j] != '1')
-				return (printf("Error\nInvalid character in map\n"), -1);
+			if (map->map[i][j] != 'N' && map->map[i][j] != 'S'
+				&& map->map[i][j] != 'E' && map->map[i][j] != 'W'
+				&& map->map[i][j] != '0' && map->map[i][j] != '1' && map->map[i][j] != '\n')
+				return (exit_parserror(map, "Error\nInvalid character in map\n"));
 			j++;
 		}
 		i++;
@@ -130,15 +135,18 @@ int	get_playerpos(t_map *map)
 
 	i = map->startline;
 	counter = 0;
+	ppos.x = 0;
+	ppos.y = 0;
+	ppos.dir = 0;
 	while (map->map[i])
 	{
 		j = 0;
-		while (map->map[i][j])
+		while (map->map[i][j] != '\n')
 		{
-			if (map->map[i][j] == 'N' || map->map[i][j] != 'S'
-				|| map->map[i][j] != 'E' || map->map[i][j] != 'W')
+			if (map->map[i][j] == 'N' || map->map[i][j] == 'S'
+				|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
 			{
-				ppos.x = i;
+				ppos.x = i - map->startline;
 				ppos.y = j;
 				ppos.dir = map->map[i][j];
 				counter++;
@@ -147,8 +155,49 @@ int	get_playerpos(t_map *map)
 		}
 		i++;
 	}
+	printf("x = %d | y = %d | dir = %c\n", ppos.x, ppos.y, ppos.dir);
+	if (counter == 0)
+		return (exit_parserror(map, "Error\nNo player\n"));
 	if (counter > 1)
-		return (printf("Error\nMultiple player positions\n"), -1);
+		return (exit_parserror(map, "Error\nMultiple player positions\n"));
 	return (0);
 }
 
+int	map_outline(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = map->startline;
+	printf("i = %d\n", i);
+	while (map->map[i])
+	{
+		if (map->map[i][0] != '1' && map->map[i][map->sizeline] != '1' && map->map[i][0] != '\n' && map->map[i][map->sizeline] != '\n')
+		{
+			printf("Ici - i = %d | sizeline = %d\n", i, map->sizeline);
+			return (exit_parserror(map, "Error\nInvalid map\n"));
+		}
+		i++;
+	}
+	j = 0;
+	while (map->map[map->startline][j])
+	{
+		if (map->map[map->startline][j] != '1')
+		{
+			printf("Ici1 - startline = %d | j = %d\n", map->startline, j);
+			return (exit_parserror(map, "Error\nInvalid map\n"));
+		}
+		j++;
+	}
+	j = 0;
+	while (map->map[map->nbline][j])
+	{
+		if (map->map[map->nbline][j] != '1')
+		{
+			printf("Ici2 - nbline = %d | j = %d\n", map->nbline, j);
+			return (exit_parserror(map, "Error\nInvalid map\n"));
+		}
+		j++;
+	}
+	return (printf("Map ok\n"));
+}
