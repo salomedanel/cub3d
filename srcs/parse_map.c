@@ -109,16 +109,17 @@ int	check_mapchar(t_map *map)
 	int		i;
 	int		j;
 
-	i = map->startline;
-	while (map->map[i])
+	//i = map->startline;
+	i = 0;
+	while (map->f_map[i])
 	{
 		j = 0;
-		while (map->map[i][j] != '\n')
+		while (map->f_map[i][j])
 		{
-			if (map->map[i][j] != 'N' && map->map[i][j] != 'S'
-				&& map->map[i][j] != 'E' && map->map[i][j] != 'W'
-				&& map->map[i][j] != '0' && map->map[i][j] != '1' && map->map[i][j] != '\n')
-				return (exit_parserror(map, "Error\nInvalid character in map\n"));
+			if (map->f_map[i][j] != 'N' && map->f_map[i][j] != 'S'
+				&& map->f_map[i][j] != 'E' && map->f_map[i][j] != 'W'
+				&& map->f_map[i][j] != '0' && map->f_map[i][j] != '1' && map->f_map[i][j] != '\n')
+				return (exit_parserror2(map, "Error\nInvalid character in map\n"));
 			j++;
 		}
 		i++;
@@ -133,22 +134,22 @@ int	get_playerpos(t_map *map)
 	int		counter;
 	t_pos	ppos;
 
-	i = map->startline;
+	i = 0;
 	counter = 0;
 	ppos.x = 0;
 	ppos.y = 0;
 	ppos.dir = 0;
-	while (map->map[i])
+	while (map->f_map[i])
 	{
 		j = 0;
-		while (map->map[i][j] != '\n')
+		while (map->f_map[i][j] != '\n')
 		{
-			if (map->map[i][j] == 'N' || map->map[i][j] == 'S'
-				|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
+			if (map->f_map[i][j] == 'N' || map->f_map[i][j] == 'S'
+				|| map->f_map[i][j] == 'E' || map->f_map[i][j] == 'W')
 			{
 				ppos.x = i - map->startline;
 				ppos.y = j;
-				ppos.dir = map->map[i][j];
+				ppos.dir = map->f_map[i][j];
 				counter++;
 			}
 			j++;
@@ -157,9 +158,9 @@ int	get_playerpos(t_map *map)
 	}
 	printf("x = %d | y = %d | dir = %c\n", ppos.x, ppos.y, ppos.dir);
 	if (counter == 0)
-		return (exit_parserror(map, "Error\nNo player\n"));
+		return (exit_parserror2(map, "Error\nNo player\n"));
 	if (counter > 1)
-		return (exit_parserror(map, "Error\nMultiple player positions\n"));
+		return (exit_parserror2(map, "Error\nMultiple player positions\n"));
 	return (0);
 }
 
@@ -168,34 +169,35 @@ int	map_outline(t_map *map)
 	int	i;
 	int	j;
 
-	i = map->startline;
+	i = 0;
+	map->sizeline = len_map(map);
 	printf("i = %d\n", i);
-	while (map->map[i])
+	while (map->f_map[i])
 	{
-		if (map->map[i][0] != '1' && map->map[i][map->sizeline] != '1' && map->map[i][0] != '\n' && map->map[i][map->sizeline] != '\n')
+		if (map->f_map[i][0] != '1' && map->f_map[i][map->sizeline] != '1' && map->f_map[i][0] != '\n' && map->f_map[i][map->sizeline] != '\n')
 		{
 			printf("Ici - i = %d | sizeline = %d\n", i, map->sizeline);
-			return (exit_parserror(map, "Error\nInvalid map\n"));
+			return (exit_parserror2(map, "Error\nInvalid map\n"));
 		}
 		i++;
 	}
 	j = 0;
-	while (map->map[map->startline][j])
+	while (map->f_map[0][j] && j < map->sizeline)
 	{
-		if (map->map[map->startline][j] != '1')
+		if (map->f_map[0][j] != '1' || map->f_map[0][j] != '\n' || map->f_map[0][j] != '\0')
 		{
 			printf("Ici1 - startline = %d | j = %d\n", map->startline, j);
-			return (exit_parserror(map, "Error\nInvalid map\n"));
+			return (exit_parserror2(map, "Error\nInvalid map\n"));
 		}
 		j++;
 	}
 	j = 0;
-	while (map->map[map->nbline][j])
+	while (map->f_map[map->nbline][j])
 	{
 		if (map->map[map->nbline][j] != '1')
 		{
 			printf("Ici2 - nbline = %d | j = %d\n", map->nbline, j);
-			return (exit_parserror(map, "Error\nInvalid map\n"));
+			return (exit_parserror2(map, "Error\nInvalid map\n"));
 		}
 		j++;
 	}

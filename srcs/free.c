@@ -45,3 +45,12 @@ int	exit_parserror(t_map *map, char *err)
 	free_texture(map);
 	exit (0);
 }
+
+int	exit_parserror2(t_map *map, char *err)
+{
+	ft_printf("%s\n", err);
+	if (map->map)
+		freetab(map->f_map);
+	free_texture(map);
+	exit (0);
+}

@@ -78,3 +78,21 @@ void	print_map(char **map)
 		i++;
 	}
 }
+
+int	len_map(t_map *map)
+{
+	int	i;
+	int	j;
+	int	len;
+
+	i = map->startline;
+	while (map->map[i])
+	{
+		j = 0;
+		while (map->map[i][j])
+			j++;
+		if (len < j)
+			len = j;
+	}
+	return (len);
+}

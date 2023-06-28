@@ -32,6 +32,7 @@ typedef struct s_map
 	int		sizeline;
 	int		startline;
 	char	**map;
+	char	**f_map;
 	char	*no;
 	char	*so;
 	char	*we;
@@ -78,6 +79,7 @@ void		get_texture_ea(char *path, int *counter, char *direction,
 int			contains_comma(char *str);
 int			ft_unsigned_atoi(t_map *map, const char *nptr, int malloc);
 void		print_map(char **map);
+int			len_map(t_map *map);
 
 // main
 void		init_data(t_map *map);
@@ -88,5 +90,6 @@ int			check_arg(int argc, char **argv);
 void		freetab(char **table);
 void		free_texture(t_map *map);
 int			exit_parserror(t_map *map, char *err);
+int			exit_parserror2(t_map *map, char *err);
 
 #endif

@@ -61,6 +61,7 @@ void	cpy_map(t_map *map, char *line, int *i)
 
 	map->map[*i] = ft_calloc(sizeof(char), (map->sizeline + 2));
 	line = get_next_line(map->file, 0);
+	//free(line);
 	j = 0;
 	while (line[j])
 	{
@@ -89,24 +90,40 @@ int	get_map(t_map *map, char **argv)
 	close(map->file);
 	return (0);
 }
-
 void	final_map(t_map *map)
 {
+	int	size;
 	int	i;
 	int	j;
+	int	k;
 
 	i = map->startline;
+	k = 0;
+	size = map->nbline - map->startline;
+	printf("size = %d\n", size);
+	print_map(map->map);
+	map->f_map = ft_calloc(sizeof(char *), size + 1);
 	while (map->map[i])
 	{
 		j = 0;
-		while (j < map->sizeline + 1)
+		map->f_map[k] = ft_calloc(sizeof(char), map->sizeline + 2);
+		while (j < map->sizeline)
 		{
-			if (map->map[i][j] == ' ' || map->map[i][j] == '\t'
-				|| map->map[i][j] == '\n' || map->map[i][j] == '\0')
-				map->map[i][j] = '1';
-			j++;
+			if (map->map[i][j] == ' ' || map->map[i][j] == '\t' || map->map[i][j] == '\n' || map->map[i][j] == '\0')
+ 				map->f_map[k][j] = '1';
+			else
+				map->f_map[k][j] = map->map[i][j];
+ 			j++;
 		}
-		map->map[i][j] = '\n';
+		map->f_map[k][j] = '\n';
+		map->f_map[k][++j] = '\0';
 		i++;
+		k++;
 	}
+	map->f_map[k] = NULL;
+	printf("F_MAP\n");
+	print_map(map->f_map);
+	freetab(map->map);
 }
+
+

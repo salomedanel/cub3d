@@ -1,11 +1,11 @@
 F 0,2,225
 SO ./texture/brick.xpm
+NO ./texture/floor.xpm
 WE ./texture/exit.xpm
 EA ./texture/pwall.xpm
-NO ./texture/pwall.xpm
 C 233,0,12
 
-111   111
-1W 00000    1  
-   1111     1111
-111111111111        111
+1111
+1W0  1  
+1
+1111

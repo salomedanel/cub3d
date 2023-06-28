@@ -76,13 +76,12 @@ int	main(int argc, char **argv)
 	if (check_emptyline(&map) == -1)
 		return (0);
 	final_map(&map);
-	print_map(map.map);
 	if (check_mapchar(&map) == -1)
 		return (0);
 	if (get_playerpos(&map) == -1)
 		return (0);
 	map_outline(&map);
-	freetab(map.map);
+	freetab(map.f_map);
 	free_texture(&map);
 	return (0);
 }
