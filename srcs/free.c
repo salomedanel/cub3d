@@ -39,7 +39,7 @@ void	free_texture(t_map *map)
 
 int	exit_parserror(t_map *map, char *err)
 {
-	ft_printf("%s\n", err);
+	ft_printf("%s", err);
 	if (map->map)
 		freetab(map->map);
 	free_texture(map);
@@ -48,7 +48,7 @@ int	exit_parserror(t_map *map, char *err)
 
 int	exit_parserror2(t_map *map, char *err)
 {
-	ft_printf("%s\n", err);
+	ft_printf("%s", err);
 	if (map->map)
 		freetab(map->f_map);
 	free_texture(map);

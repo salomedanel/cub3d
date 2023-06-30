@@ -6,18 +6,21 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:22:56 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/23 15:54:13 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/30 14:05:09 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_data(t_map *map)
-{
+void	init_data(t_map *map, t_pos *ppos)
+{	
 	map->no = NULL;
 	map->so = NULL;
 	map->we = NULL;
 	map->ea = NULL;
+	ppos->x = 0;
+	ppos->y = 0;
+	ppos->dir = 0;
 }
 
 int	check_file(char **argv, int file)
@@ -57,6 +60,28 @@ int	check_arg(int argc, char **argv)
 	}
 }
 
+int	parsing(t_map *map, char **argv)
+{
+	t_pos	ppos;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = -1;
+	size_map(map);
+	get_map(map, argv);
+	parse_texture(map, i, &ppos);
+	parse_texture_path(map);
+	parse_fc(map, i, j);
+	check_emptyline(map);
+	final_map(map, i);
+	check_mapchar(map);
+	get_playerpos(map, &ppos, i);
+	map_outline(map, j);
+	print_map(map->f_map);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_map	map;
@@ -64,23 +89,7 @@ int	main(int argc, char **argv)
 	map.file = check_arg(argc, argv);
 	if (map.file < 0)
 		return (-1);
-	if (size_map(&map) == -1)
-		return (0);
-	get_map(&map, argv);
-	if (parse_texture(&map) == -1)
-		return (0);
-	if (parse_texture_path(&map) == -1)
-		return (0);
-	if (parse_fc(&map) == -1)
-		return (0);
-	if (check_emptyline(&map) == -1)
-		return (0);
-	final_map(&map);
-	if (check_mapchar(&map) == -1)
-		return (0);
-	if (get_playerpos(&map) == -1)
-		return (0);
-	map_outline(&map);
+	parsing(&map, argv);
 	freetab(map.f_map);
 	free_texture(&map);
 	return (0);

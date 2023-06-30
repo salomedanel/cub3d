@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*   parsing_utils00.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:44:24 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/23 15:41:06 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/30 13:54:02 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,19 @@ int	contains_comma(char *str)
 	return (comma);
 }
 
+void	invalid_atoi(t_map *map, int malloc)
+{
+	if (malloc == 1)
+		freetab(map->f);
+	if (malloc == 2)
+	{
+		freetab(map->f);
+		freetab(map->c);
+	}
+	exit_parserror(map, "Error\nInvalid color id");
+	return ;
+}
+
 int	ft_unsigned_atoi(t_map *map, const char *nptr, int malloc)
 {
 	int	res;
@@ -36,29 +49,11 @@ int	ft_unsigned_atoi(t_map *map, const char *nptr, int malloc)
 	res = 0;
 	i = 0;
 	if (nptr[i] && nptr[i] == '-')
-	{
-		if (malloc == 1)
-			freetab(map->f);
-		if (malloc == 2)
-		{
-			freetab(map->f);
-			freetab(map->c);
-		}
-		exit_parserror(map, "Error\nInvalid color id\n");
-	}
+		invalid_atoi(map, malloc);
 	while (nptr[i])
 	{
 		if ((nptr[i] < '0' || nptr[i] > '9') && nptr[i] != '\n')
-		{
-			if (malloc == 1)
-				freetab(map->f);
-			if (malloc == 2)
-			{
-				freetab(map->f);
-				freetab(map->c);
-			}
-			exit_parserror(map, "Error\nInvalid color id\n");
-		}
+			invalid_atoi(map, malloc);
 		i++;
 	}
 	i = -1;
@@ -86,6 +81,7 @@ int	len_map(t_map *map)
 	int	len;
 
 	i = map->startline;
+	len = 0;
 	while (map->map[i])
 	{
 		j = 0;
@@ -93,6 +89,7 @@ int	len_map(t_map *map)
 			j++;
 		if (len < j)
 			len = j;
+		i++;
 	}
 	return (len);
 }
