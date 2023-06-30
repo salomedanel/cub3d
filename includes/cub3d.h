@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/30 14:06:18 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/30 14:28:23 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,12 @@ typedef struct s_pos
 	char	dir;
 }		t_pos;
 
+typedef	struct	s_mlx
+{
+	void	*mlx;
+	void	*window;
+}				t_mlx;
+
 // get_map
 int			start_map(t_map *map);
 int			size_map(t_map *map);
@@ -86,6 +92,9 @@ int			len_map(t_map *map);
 void		fill_colors(t_map *map, int fc_malloc, char c);
 void		check_colors_value(t_map *map);
 int			check_emptyline(t_map *map);
+
+// init_mlx
+void		init_window(t_map *map, t_mlx *mlx);
 
 // main
 void		init_data(t_map *map, t_pos *ppos);

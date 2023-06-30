@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:22:56 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/30 14:05:09 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/06/30 16:00:20 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,14 @@ int	parsing(t_map *map, char **argv)
 int	main(int argc, char **argv)
 {
 	t_map	map;
+	t_mlx	mlx;
 
 	map.file = check_arg(argc, argv);
 	if (map.file < 0)
 		return (-1);
 	parsing(&map, argv);
+	mlx.mlx = mlx_init();
+	init_window(&map, &mlx);
 	freetab(map.f_map);
 	free_texture(&map);
 	return (0);

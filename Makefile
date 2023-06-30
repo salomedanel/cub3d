@@ -12,6 +12,7 @@ SRC =	main \
 		get_texture \
 		parsing_utils00 \
 		parsing_utils01 \
+		mlx_init \
 		free \
 		
 SRCS = $(addprefix ${DIRSRC}, $(addsuffix .c, ${SRC}))
@@ -31,7 +32,7 @@ MLX_FLAGS = -I . -lXext -lX11
 ${NAME}: ${OBJS}
 	@cd ${DIRLIB} && ${MAKE}
 	@cd ${DIRMLX} && ${MAKE}
-	@${CC} ${CFLAGS} ${MLX_FLAGS} -o ${NAME} ${OBJS} libft/libft.a mlx/libmlx.a
+	${CC} ${CFLAGS} -o ${NAME} ${OBJS} -L${DIRLIB} -lft -L${DIRMLX} -lmlx -lXext -lX11
 	@echo "✅ cub3d created"
 
 all: ${NAME}
