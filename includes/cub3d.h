@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/30 14:28:23 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/07/01 16:03:22 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 // # define ERR_TXT "Error\nWrong or missing texture path."
 # define ERR_PLACE "Error\nMap before texture or missing texture info.\n"
 # define ERR_FC "Error\nWrong floor or ceiling color id.\n"
+# define WALL "./texture/floor.xpm"
+# define FLOOR "./texture/pwall.xpm"
+# define PLAYER "./texture/exit.xpm"
 
 typedef struct s_map
 {
@@ -55,7 +58,19 @@ typedef	struct	s_mlx
 {
 	void	*mlx;
 	void	*window;
+	void	*minimap;
+	void	*img_wall;
+	void	*img_floor;
+	void	*img_player;
+	int		height;
+	int		lenght;
 }				t_mlx;
+
+typedef	struct	s_glb
+{
+	t_map	map;
+	t_mlx	mlx;
+}				t_glb;
 
 // get_map
 int			start_map(t_map *map);
@@ -95,6 +110,14 @@ int			check_emptyline(t_map *map);
 
 // init_mlx
 void		init_window(t_map *map, t_mlx *mlx);
+void		window_minimap(t_map *map, t_mlx *mlx);
+void		init_img(t_mlx *mlx);
+int			key_press(int keycode, t_glb *glb);
+
+// display
+void		display_img(t_mlx *mlx, int i, int j, void *img);
+int			display(t_glb *glb);
+int			display_minimap(t_glb *glb);
 
 // main
 void		init_data(t_map *map, t_pos *ppos);
@@ -107,5 +130,6 @@ void		freetab(char **table);
 void		free_texture(t_map *map);
 int			exit_parserror(t_map *map, char *err);
 int			exit_parserror2(t_map *map, char *err);
+int			quit(t_glb *glb);
 
 #endif

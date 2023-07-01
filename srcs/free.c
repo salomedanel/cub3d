@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:54:47 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/23 15:41:19 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/07/01 13:48:27 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,18 @@ int	exit_parserror2(t_map *map, char *err)
 		freetab(map->f_map);
 	free_texture(map);
 	exit (0);
+}
+
+int	quit(t_glb *glb)
+{
+	//(void) map;
+	//(void) mlx;
+	(void) glb;
+	//freetab(glb->map.f_map);
+	//free_texture(map);
+	//mlx_destroy_window(mlx->mlx, mlx->window);
+	//mlx_destroy_display(mlx->mlx);
+	//free(mlx->mlx);
+	exit(0);
+	return (1);
 }

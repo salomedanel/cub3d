@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:22:56 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/30 16:00:20 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/07/01 16:18:32 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	parsing(t_map *map, char **argv)
 	check_mapchar(map);
 	get_playerpos(map, &ppos, i);
 	map_outline(map, j);
-	print_map(map->f_map);
+	//print_map(map->f_map);
 	return (0);
 }
 
@@ -86,14 +86,36 @@ int	main(int argc, char **argv)
 {
 	t_map	map;
 	t_mlx	mlx;
+	t_glb	glb;
 
 	map.file = check_arg(argc, argv);
 	if (map.file < 0)
 		return (-1);
 	parsing(&map, argv);
 	mlx.mlx = mlx_init();
+	if (mlx.mlx == NULL)
+		return (printf("Error\nPb init mlx\n"));
 	init_window(&map, &mlx);
-	freetab(map.f_map);
-	free_texture(&map);
+	window_minimap(&map, &mlx);
+	init_img(&mlx);
+	// glb.map.f_map = malloc(sizeof(char*) * (map.height + 1));
+	// if (glb.map.f_map == NULL)
+	// 	return (0);
+	// for (int i = 0; i < map.height; i++)
+	// {
+   	// 	glb.map.f_map[i] = ft_strdup(map.f_map[i]);
+    // 	if (glb.map.f_map[i] == NULL)
+	// 		return (0);
+	// }
+	// glb.map.f_map[map.height] = NULL;
+	// printf("%s\n", glb.map.f_map)
+	mlx_loop_hook(mlx.mlx, &display, &mlx);
+	mlx_hook(mlx.window, 17, 1L << 0, quit, &mlx);
+	mlx_hook(mlx.window, 2, 1L << 0, key_press, &mlx);
+	mlx_hook(mlx.minimap, 17, 1L << 0, quit, &mlx);
+	mlx_hook(mlx.minimap, 2, 1L << 0, key_press, &mlx);
+	mlx_loop(mlx.mlx);
+	//freetab(map.f_map);
+	//free_texture(&map);
 	return (0);
 }
