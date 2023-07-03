@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/01 16:03:22 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/07/03 17:07:07 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ typedef struct s_map
 	int		lenght;
 }			t_map;
 
-typedef struct s_pos
+typedef struct s_rc
 {
 	int		x;
 	int		y;
 	char	dir;
-}		t_pos;
+}		t_rc;
 
 typedef	struct	s_mlx
 {
@@ -65,6 +65,11 @@ typedef	struct	s_mlx
 	int		height;
 	int		lenght;
 }				t_mlx;
+
+// typedef struct	s_rc
+// {
+	
+// }
 
 typedef	struct	s_glb
 {
@@ -80,10 +85,10 @@ int			get_map(t_map *map, char **argv);
 void		final_map(t_map *map, int k);
 
 // parse_map
-int			parse_texture(t_map *map, int counter, t_pos *ppos);
+int			parse_texture(t_map *map, int counter, t_rc *rc);
 int			parse_fc(t_map *map, int fc_malloc, int i);
 int			check_mapchar(t_map *map);
-int			get_playerpos(t_map *map, t_pos *ppos, int counter);
+int			get_playerpos(t_map *map, t_rc *rc, int counter);
 int			map_outline(t_map *map, int i);
 
 //get_texture
@@ -109,27 +114,31 @@ void		check_colors_value(t_map *map);
 int			check_emptyline(t_map *map);
 
 // init_mlx
-void		init_window(t_map *map, t_mlx *mlx);
-void		window_minimap(t_map *map, t_mlx *mlx);
-void		init_img(t_mlx *mlx);
+void		init_window(t_glb *glb);
+void		window_minimap(t_glb *glb);
+void		init_img(t_glb *glb);
 int			key_press(int keycode, t_glb *glb);
 
 // display
-void		display_img(t_mlx *mlx, int i, int j, void *img);
+void		display_img(t_glb *glb, int i, int j, void *img);
 int			display(t_glb *glb);
 int			display_minimap(t_glb *glb);
 
 // main
-void		init_data(t_map *map, t_pos *ppos);
+void		init_data(t_map *map, t_rc *rc);
 int			check_file(char **argv, int file);
 int			check_arg(int argc, char **argv);
 int			parsing(t_map *map, char **argv);
 
-// free
+// free00
 void		freetab(char **table);
 void		free_texture(t_map *map);
 int			exit_parserror(t_map *map, char *err);
 int			exit_parserror2(t_map *map, char *err);
 int			quit(t_glb *glb);
+
+//free01
+void		free_map(t_map *map);
+void		free_mlx(t_mlx *mlx);
 
 #endif

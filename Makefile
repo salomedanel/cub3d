@@ -14,8 +14,9 @@ SRC =	main \
 		parsing_utils01 \
 		mlx_init \
 		display \
-		free \
-		
+		free00 \
+		free01 \
+				
 SRCS = $(addprefix ${DIRSRC}, $(addsuffix .c, ${SRC}))
 
 OBJS = ${SRCS:.c=.o}

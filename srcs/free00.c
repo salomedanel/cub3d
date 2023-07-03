@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   free00.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:54:47 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/01 13:48:27 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/07/03 15:21:41 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,9 @@ void	freetab(char **tab)
 {
 	int	i;
 
-	i = 0;
-	while (tab[i])
-	{
+	i = -1;
+	while (tab[++i])
 		free(tab[i]);
-		i++;
-	}
 	free(tab);
 }
 
@@ -57,14 +54,12 @@ int	exit_parserror2(t_map *map, char *err)
 
 int	quit(t_glb *glb)
 {
-	//(void) map;
-	//(void) mlx;
-	(void) glb;
-	//freetab(glb->map.f_map);
-	//free_texture(map);
-	//mlx_destroy_window(mlx->mlx, mlx->window);
-	//mlx_destroy_display(mlx->mlx);
-	//free(mlx->mlx);
+	mlx_destroy_window(glb->mlx.mlx, glb->mlx.window);
+	mlx_destroy_display(glb->mlx.mlx);
+	free(glb->mlx.img_wall);
+	free(glb->mlx.img_floor);
+	free(glb->mlx.img_player);
+	free(glb->mlx.mlx);
+	free_map(&glb->map);
 	exit(0);
-	return (1);
 }

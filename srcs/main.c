@@ -3,24 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:22:56 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/01 16:18:32 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/07/03 17:08:06 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_data(t_map *map, t_pos *ppos)
+void	init_data(t_map *map, t_rc *rc)
 {	
 	map->no = NULL;
 	map->so = NULL;
 	map->we = NULL;
 	map->ea = NULL;
-	ppos->x = 0;
-	ppos->y = 0;
-	ppos->dir = 0;
+	rc->x = 0;
+	rc->y = 0;
 }
 
 int	check_file(char **argv, int file)
@@ -62,7 +61,7 @@ int	check_arg(int argc, char **argv)
 
 int	parsing(t_map *map, char **argv)
 {
-	t_pos	ppos;
+	t_rc	rc;
 	int		i;
 	int		j;
 
@@ -70,13 +69,13 @@ int	parsing(t_map *map, char **argv)
 	j = -1;
 	size_map(map);
 	get_map(map, argv);
-	parse_texture(map, i, &ppos);
+	parse_texture(map, i, &rc);
 	parse_texture_path(map);
 	parse_fc(map, i, j);
 	check_emptyline(map);
 	final_map(map, i);
 	check_mapchar(map);
-	get_playerpos(map, &ppos, i);
+	get_playerpos(map, &rc, i);
 	map_outline(map, j);
 	//print_map(map->f_map);
 	return (0);
@@ -86,7 +85,7 @@ int	main(int argc, char **argv)
 {
 	t_map	map;
 	t_mlx	mlx;
-	t_glb	glb;
+	t_glb	*glb;
 
 	map.file = check_arg(argc, argv);
 	if (map.file < 0)
@@ -95,27 +94,19 @@ int	main(int argc, char **argv)
 	mlx.mlx = mlx_init();
 	if (mlx.mlx == NULL)
 		return (printf("Error\nPb init mlx\n"));
-	init_window(&map, &mlx);
-	window_minimap(&map, &mlx);
-	init_img(&mlx);
-	// glb.map.f_map = malloc(sizeof(char*) * (map.height + 1));
-	// if (glb.map.f_map == NULL)
-	// 	return (0);
-	// for (int i = 0; i < map.height; i++)
-	// {
-   	// 	glb.map.f_map[i] = ft_strdup(map.f_map[i]);
-    // 	if (glb.map.f_map[i] == NULL)
-	// 		return (0);
-	// }
-	// glb.map.f_map[map.height] = NULL;
-	// printf("%s\n", glb.map.f_map)
-	mlx_loop_hook(mlx.mlx, &display, &mlx);
-	mlx_hook(mlx.window, 17, 1L << 0, quit, &mlx);
-	mlx_hook(mlx.window, 2, 1L << 0, key_press, &mlx);
-	mlx_hook(mlx.minimap, 17, 1L << 0, quit, &mlx);
-	mlx_hook(mlx.minimap, 2, 1L << 0, key_press, &mlx);
-	mlx_loop(mlx.mlx);
-	//freetab(map.f_map);
-	//free_texture(&map);
+	glb = malloc(sizeof(t_glb));
+	if (!glb)
+		return (0);
+	glb->map = map;
+	glb->mlx = mlx;
+	init_window(glb);
+	// window_minimap(glb);
+	init_img(glb);
+	mlx_loop_hook(mlx.mlx, &display, glb);
+	mlx_hook(glb->mlx.window, 17, 1L << 0, quit, glb);
+	mlx_hook(glb->mlx.window, 2, 1L << 0, key_press, glb);
+	// mlx_hook(glb->mlx.minimap, 17, 1L << 0, quit, glb);
+	// mlx_hook(glb->mlx.minimap, 2, 1L << 0, key_press, glb);
+	mlx_loop(glb->mlx.mlx);
 	return (0);
 }

@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 11:32:17 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/30 14:06:04 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/07/03 17:06:43 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	parse_texture(t_map *map, int counter, t_pos *ppos)
+int	parse_texture(t_map *map, int counter, t_rc *rc)
 {
 	int	i;
 
 	i = -1;
-	init_data(map, ppos);
+	init_data(map, rc);
 	map->startline = start_map(map);
 	while (map->map[++i])
 	{
@@ -93,7 +93,7 @@ int	check_mapchar(t_map *map)
 	return (0);
 }
 
-int	get_playerpos(t_map *map, t_pos *ppos, int counter)
+int	get_playerpos(t_map *map, t_rc *rc, int counter)
 {
 	int		i;
 	int		j;
@@ -107,9 +107,9 @@ int	get_playerpos(t_map *map, t_pos *ppos, int counter)
 			if (map->f_map[i][j] == 'N' || map->f_map[i][j] == 'S'
 				|| map->f_map[i][j] == 'E' || map->f_map[i][j] == 'W')
 			{
-				ppos->x = i - map->startline;
-				ppos->y = j;
-				ppos->dir = map->f_map[i][j];
+				rc->x = i - map->startline;
+				rc->y = j;
+				rc->dir = map->f_map[i][j];
 				counter++;
 			}
 		}
