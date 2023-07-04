@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 11:32:17 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/03 17:06:43 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/04 13:42:41 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,8 @@ int	get_playerpos(t_map *map, t_rc *rc, int counter)
 			if (map->f_map[i][j] == 'N' || map->f_map[i][j] == 'S'
 				|| map->f_map[i][j] == 'E' || map->f_map[i][j] == 'W')
 			{
-				rc->x = i - map->startline;
-				rc->y = j;
+				rc->posX = i - map->startline;
+				rc->posY = j;
 				rc->dir = map->f_map[i][j];
 				counter++;
 			}

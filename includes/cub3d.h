@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/03 17:07:07 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:57:44 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,30 @@ typedef struct s_map
 
 typedef struct s_rc
 {
-	int		x;
-	int		y;
 	char	dir;
+	int		posX;
+	int		posY;
+	int		mapX;
+	int		mapY;
+	int		stepX;
+	int		stepY;
+	int		hit;
+	int		side;
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
+	double	cameraX;
+	double	width;
+	double	rayDirX;
+	double	rayDirY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	sideDistX;
+	double	sideDistY;
+	double	perpWallDist;
+	double	time;
+	double	oldtime;
 }		t_rc;
 
 typedef	struct	s_mlx
@@ -65,11 +86,6 @@ typedef	struct	s_mlx
 	int		height;
 	int		lenght;
 }				t_mlx;
-
-// typedef struct	s_rc
-// {
-	
-// }
 
 typedef	struct	s_glb
 {

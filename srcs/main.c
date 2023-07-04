@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:22:56 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/03 17:08:06 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:49:32 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	init_data(t_map *map, t_rc *rc)
 	map->so = NULL;
 	map->we = NULL;
 	map->ea = NULL;
-	rc->x = 0;
-	rc->y = 0;
+	rc->posX = 0;
+	rc->posY = 0;
 }
 
 int	check_file(char **argv, int file)
@@ -100,13 +100,13 @@ int	main(int argc, char **argv)
 	glb->map = map;
 	glb->mlx = mlx;
 	init_window(glb);
-	// window_minimap(glb);
+	window_minimap(glb);
 	init_img(glb);
 	mlx_loop_hook(mlx.mlx, &display, glb);
 	mlx_hook(glb->mlx.window, 17, 1L << 0, quit, glb);
 	mlx_hook(glb->mlx.window, 2, 1L << 0, key_press, glb);
-	// mlx_hook(glb->mlx.minimap, 17, 1L << 0, quit, glb);
-	// mlx_hook(glb->mlx.minimap, 2, 1L << 0, key_press, glb);
+	mlx_hook(glb->mlx.minimap, 17, 1L << 0, quit, glb);
+	mlx_hook(glb->mlx.minimap, 2, 1L << 0, key_press, glb);
 	mlx_loop(glb->mlx.mlx);
 	return (0);
 }

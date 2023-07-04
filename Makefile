@@ -13,9 +13,10 @@ SRC =	main \
 		parsing_utils00 \
 		parsing_utils01 \
 		mlx_init \
-		display \
+		minimap \
 		free00 \
 		free01 \
+		hooks \
 				
 SRCS = $(addprefix ${DIRSRC}, $(addsuffix .c, ${SRC}))
 
