@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_init.c                                         :+:      :+:    :+:   */
+/*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:26:17 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/04 15:48:53 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:59:07 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	init_window(t_glb *glb)
 {
-	glb->mlx.window = mlx_new_window(glb->mlx.mlx, glb->map.lenght * 64, glb->map.height * 64,
-			"cub3d");
+	glb->mlx.window = mlx_new_window(glb->mlx.mlx, WIDTH, HEIGHT, "cub3d");
 	if (glb->mlx.window == NULL)
 	{
 		free(glb->mlx.mlx);
@@ -27,8 +26,7 @@ void	init_window(t_glb *glb)
 
 void	window_minimap(t_glb *glb)
 {
-	glb->mlx.minimap = mlx_new_window(glb->mlx.mlx, glb->map.lenght * 10, glb->map.height * 10,
-			"minimap");
+	glb->mlx.minimap = mlx_new_window(glb->mlx.mlx, WIDTH, HEIGHT, "minimap");
 	if (glb->mlx.minimap == NULL)
 	{
 		free(glb->mlx.mlx);

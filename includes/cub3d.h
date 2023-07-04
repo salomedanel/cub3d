@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/04 14:57:44 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:17:02 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 # define WALL "./texture/floor.xpm"
 # define FLOOR "./texture/pwall.xpm"
 # define PLAYER "./texture/exit.xpm"
+# define WIDTH 1000
+# define HEIGHT 1000
+
 
 typedef struct s_map
 {
@@ -50,20 +53,19 @@ typedef struct s_map
 typedef struct s_rc
 {
 	char	dir;
-	int		posX;
-	int		posY;
 	int		mapX;
 	int		mapY;
 	int		stepX;
 	int		stepY;
 	int		hit;
 	int		side;
+	double	posX;
+	double	posY;
 	double	dirX;
 	double	dirY;
 	double	planeX;
 	double	planeY;
 	double	cameraX;
-	double	width;
 	double	rayDirX;
 	double	rayDirY;
 	double	deltaDistX;
@@ -91,6 +93,7 @@ typedef	struct	s_glb
 {
 	t_map	map;
 	t_mlx	mlx;
+	t_rc	rc;
 }				t_glb;
 
 // get_map
