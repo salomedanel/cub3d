@@ -12,7 +12,7 @@ SRC =	main \
 		get_texture \
 		parsing_utils00 \
 		parsing_utils01 \
-		mlx_init \
+		window \
 		minimap \
 		free00 \
 		free01 \
