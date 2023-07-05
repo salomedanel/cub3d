@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/04 17:17:02 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:17:31 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <math.h>
 
 // # define ERR_TXT "Error\nWrong or missing texture path."
 # define ERR_PLACE "Error\nMap before texture or missing texture info.\n"
@@ -50,6 +51,18 @@ typedef struct s_map
 	int		lenght;
 }			t_map;
 
+typedef	struct	s_mlx
+{
+	void	*mlx;
+	void	*window;
+	void	*minimap;
+	void	*img_wall;
+	void	*img_floor;
+	void	*img_player;
+	int		height;
+	int		lenght;
+}			t_mlx;
+
 typedef struct s_rc
 {
 	char	dir;
@@ -59,6 +72,9 @@ typedef struct s_rc
 	int		stepY;
 	int		hit;
 	int		side;
+	int		lineHeight;
+	int		drawStart;
+	int		drawEnd;
 	double	posX;
 	double	posY;
 	double	dirX;
@@ -77,23 +93,21 @@ typedef struct s_rc
 	double	oldtime;
 }		t_rc;
 
-typedef	struct	s_mlx
+typedef struct	s_image
 {
-	void	*mlx;
-	void	*window;
-	void	*minimap;
-	void	*img_wall;
-	void	*img_floor;
-	void	*img_player;
-	int		height;
-	int		lenght;
-}				t_mlx;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_image;
 
 typedef	struct	s_glb
 {
 	t_map	map;
 	t_mlx	mlx;
 	t_rc	rc;
+	t_image	img;
 }				t_glb;
 
 // get_map
