@@ -41,7 +41,7 @@ MLX_FLAGS = -I . -lXext -lX11
 ${NAME}: ${OBJS}
 	@cd ${DIRLIB} && ${MAKE}
 	@cd ${DIRMLX} && ${MAKE}
-	${CC} ${CFLAGS} -o ${NAME} ${OBJS} -L${DIRLIB} -lft -L${DIRMLX} -lmlx -lXext -lX11
+	${CC} ${CFLAGS} -o ${NAME} ${OBJS} -L${DIRLIB} -lft -L${DIRMLX} -lmlx -lXext -lX11 -lm
 	@echo "✅ cub3d created"
 
 all: ${NAME}
