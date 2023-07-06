@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/06 12:32:48 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:28:56 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,12 @@ typedef struct s_rc
 	int		drawEnd;
 	double	posX;
 	double	posY;
+	double	newPosX;
+	double	newPosY;
 	double	dirX;
 	double	dirY;
+	double	newDirX:
+	double	newDirY;
 	double	planeX;
 	double	planeY;
 	double	cameraX;
@@ -88,6 +92,7 @@ typedef struct s_rc
 	double	deltaDistY;
 	double	sideDistX;
 	double	sideDistY;
+	double	moveSpeed;
 	double	perpWallDist;
 	double	time;
 	double	oldtime;
@@ -189,5 +194,14 @@ void		raycasting_loop(t_glb *glb);
 float   	get_deltadist(float raydir);
 
 //colors
+
+//moves
+void		go_forward(t_glb *glb);
+void		go_backward(t_glb *glb);
+void		go_left(t_glb *glb);
+void		go_right(t_glb *glb);
+
+//rotations
+
 
 #endif

@@ -21,6 +21,8 @@ SRC =	main \
 		raycasting_utils \
 		image \
 		colors \
+		moves \
+		rotations \
 				
 SRCS = $(addprefix ${DIRSRC}, $(addsuffix .c, ${SRC}))
 
