@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/05 16:17:31 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:49:40 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_map
 	char	**c;
 	int		colors[6];
 	int		height;
-	int		lenght;
+	int		length;
 }			t_map;
 
 typedef	struct	s_mlx
@@ -60,7 +60,7 @@ typedef	struct	s_mlx
 	void	*img_floor;
 	void	*img_player;
 	int		height;
-	int		lenght;
+	int		length;
 }			t_mlx;
 
 typedef struct s_rc
@@ -149,8 +149,8 @@ int			check_emptyline(t_map *map);
 // init_mlx
 void		init_window(t_glb *glb);
 void		window_minimap(t_glb *glb);
-void		init_img(t_glb *glb);
 int			key_press(int keycode, t_glb *glb);
+t_image		*init_img(void *glb);
 
 // display
 void		display_img(t_glb *glb, int i, int j, void *img);
@@ -173,5 +173,15 @@ int			quit(t_glb *glb);
 //free01
 void		free_map(t_map *map);
 void		free_mlx(t_mlx *mlx);
+
+//raycasting
+void		init_rc(t_glb *glb, int i);
+void		step_sidedist(t_glb *glb);
+void		dda(t_glb *glb);
+void		draw_on_screen(t_glb *glb);
+void		raycasting_loop(t_glb *glb);
+
+//raycasting_utils
+float   	get_deltadist(float raydir);
 
 #endif

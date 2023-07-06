@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:25:50 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/07/05 16:18:36 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:46:57 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	init_rc(t_glb *glb, int i)
 	glb->rc.mapX = abs((int)glb->rc.posX);
 	glb->rc.mapY = abs((int)glb->rc.posY);
 	glb->rc.cameraX = 2 * i / (float)WIDTH - 1;
-	glb->rc.rayDirX = glb->rc.dirX + glb->rc.planeX *  glb->rc.cameraX
-	glb->rc.rayDirY = glb->rc.dirY + glb->rc.planeY *  glb->rc.cameraX
+	glb->rc.rayDirX = glb->rc.dirX + glb->rc.planeX *  glb->rc.cameraX;
+	glb->rc.rayDirY = glb->rc.dirY + glb->rc.planeY *  glb->rc.cameraX;
 	glb->rc.deltaDistX = get_deltadist(glb->rc.rayDirX);
 	glb->rc.deltaDistY = get_deltadist(glb->rc.rayDirY);
 }
@@ -58,12 +58,12 @@ void	dda(t_glb *glb)
 			glb->rc.mapX += glb->rc.stepX;
 			glb->rc.side = 0;
 		}
-	}
-	else
-	{
-		glb->rc.sideDistY += glb->rc.deltaDistY;
-		glb->rc.mapY += glb->rc.stepY;
-		glb->rc.side = 1;
+		else
+		{
+			glb->rc.sideDistY += glb->rc.deltaDistY;
+			glb->rc.mapY += glb->rc.stepY;
+			glb->rc.side = 1;
+		}
 	}
 	if (glb->map.f_map[glb->rc.mapX][glb->rc.mapY] == '1')
 		glb->rc.hit = 1;
@@ -84,7 +84,7 @@ void	draw_on_screen(t_glb *glb)
 		glb->rc.drawEnd = HEIGHT - 1;
 }
 
-int	raycasting_loop(t_glb *glb)
+void	raycasting_loop(t_glb *glb)
 {
 	int	i;
 	

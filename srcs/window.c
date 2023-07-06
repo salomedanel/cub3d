@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:26:17 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/05 16:19:15 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:47:58 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void	window_minimap(t_glb *glb)
 
 // void	init_img(t_glb *glb)
 // {
-// 	glb->mlx.img_wall = mlx_xpm_file_to_image(glb->mlx.mlx, WALL, &glb->mlx.lenght,
+// 	glb->mlx.img_wall = mlx_xpm_file_to_image(glb->mlx.mlx, WALL, &glb->mlx.length,
 // 			&glb->mlx.height);
-// 	glb->mlx.img_floor = mlx_xpm_file_to_image(glb->mlx.mlx, FLOOR, &glb->mlx.lenght,
+// 	glb->mlx.img_floor = mlx_xpm_file_to_image(glb->mlx.mlx, FLOOR, &glb->mlx.length,
 // 			&glb->mlx.height);
-// 	glb->mlx.img_player = mlx_xpm_file_to_image(glb->mlx.mlx, PLAYER, &glb->mlx.lenght,
+// 	glb->mlx.img_player = mlx_xpm_file_to_image(glb->mlx.mlx, PLAYER, &glb->mlx.length,
 // 			&glb->mlx.height);
 // }

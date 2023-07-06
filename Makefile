@@ -17,6 +17,10 @@ SRC =	main \
 		free00 \
 		free01 \
 		hooks \
+		raycasting \
+		raycasting_utils \
+		image \
+		colors \
 				
 SRCS = $(addprefix ${DIRSRC}, $(addsuffix .c, ${SRC}))
 

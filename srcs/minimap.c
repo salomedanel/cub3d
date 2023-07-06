@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 14:52:08 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/04 15:49:19 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:47:58 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 //IL FAUT ENVOYER LES POINTS DANS L'IMAGE QUI SERA CREEE POUR LA MINIMAP ET NON UNE WINDOZ ANNEXE
 void	display_img(t_glb *glb, int i, int j, void *img)
 {
-	mlx_put_image_to_window(glb->mlx.mlx, glb->mlx.minimap, img, glb->mlx.lenght * j,
+	mlx_put_image_to_window(glb->mlx.mlx, glb->mlx.minimap, img, glb->mlx.length * j,
 		glb->mlx.height * i);
 }
 

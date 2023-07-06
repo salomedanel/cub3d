@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 11:05:55 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/26 13:51:33 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/07/06 11:47:58 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,13 @@ void	final_map(t_map *map, int k)
 
 	i = map->startline - 1;
 	map->height = map->nbline - map->startline;
-	map->lenght = len_map(map);
+	map->length = len_map(map);
 	map->f_map = ft_calloc(sizeof(char *), map->height + 1);
 	while (map->map[++i])
 	{
 		j = -1;
-		map->f_map[k] = ft_calloc(sizeof(char), map->lenght + 2);
-		while (++j < map->lenght)
+		map->f_map[k] = ft_calloc(sizeof(char), map->length + 2);
+		while (++j < map->length)
 		{
 			if (map->map[i][j] == ' ' || map->map[i][j] == '\t'
 				|| map->map[i][j] == '\n' || map->map[i][j] == '\0')

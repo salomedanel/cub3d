@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 11:32:17 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/04 13:42:41 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:47:58 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,12 +127,12 @@ int	map_outline(t_map *map, int i)
 
 	while (map->f_map[++i])
 	{
-		if (map->f_map[i][0] != '1' && map->f_map[i][map->lenght] != '1'
-			&& map->f_map[i][0] != '\n' && map->f_map[i][map->lenght] != '\n')
+		if (map->f_map[i][0] != '1' && map->f_map[i][map->length] != '1'
+			&& map->f_map[i][0] != '\n' && map->f_map[i][map->length] != '\n')
 			return (exit_parserror2(map, "Error\nInvalid map\n"));
 	}
 	j = -1;
-	while (map->f_map[0][++j] && j < map->lenght)
+	while (map->f_map[0][++j] && j < map->length)
 	{
 		if (map->f_map[0][j] != '1' && map->f_map[0][j] != '\n'
 			&& map->f_map[0][j] != '\0')
