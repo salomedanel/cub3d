@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/06 14:28:56 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:05:06 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ typedef struct s_rc
 	double	newPosY;
 	double	dirX;
 	double	dirY;
-	double	newDirX:
-	double	newDirY;
+	double	oldDirX;
 	double	planeX;
 	double	planeY;
+	double	oldPlaneX;
 	double	cameraX;
 	double	rayDirX;
 	double	rayDirY;
@@ -202,6 +202,7 @@ void		go_left(t_glb *glb);
 void		go_right(t_glb *glb);
 
 //rotations
-
+void		rotate_right(t_glb *glb);
+void		rotate_left(t_glb *glb);
 
 #endif
