@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/06 11:49:40 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/06 12:32:48 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,12 @@ typedef	struct	s_glb
 	t_image	img;
 }				t_glb;
 
+// main
+void		init_data(t_map *map, t_rc *rc);
+int			check_file(char **argv, int file);
+int			check_arg(int argc, char **argv);
+int			parsing(t_map *map, char **argv);
+
 // get_map
 int			start_map(t_map *map);
 int			size_map(t_map *map);
@@ -146,22 +152,20 @@ void		fill_colors(t_map *map, int fc_malloc, char c);
 void		check_colors_value(t_map *map);
 int			check_emptyline(t_map *map);
 
-// init_mlx
+// window
 void		init_window(t_glb *glb);
-void		window_minimap(t_glb *glb);
-int			key_press(int keycode, t_glb *glb);
-t_image		*init_img(void *glb);
 
-// display
+//hooks
+int			key_press(int keycode, t_glb *glb);
+
+//image
+t_image		*init_img(void *glb);
+void		pixel_put(t_image *img, int x, int y, int color);
+
+// minimap
 void		display_img(t_glb *glb, int i, int j, void *img);
 int			display(t_glb *glb);
 int			display_minimap(t_glb *glb);
-
-// main
-void		init_data(t_map *map, t_rc *rc);
-int			check_file(char **argv, int file);
-int			check_arg(int argc, char **argv);
-int			parsing(t_map *map, char **argv);
 
 // free00
 void		freetab(char **table);
@@ -183,5 +187,7 @@ void		raycasting_loop(t_glb *glb);
 
 //raycasting_utils
 float   	get_deltadist(float raydir);
+
+//colors
 
 #endif
