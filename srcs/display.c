@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:12:28 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/07/11 16:53:38 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/11 16:55:58 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	launcher_events(t_glb *glb)
 		rotate_right(glb);
 }
 
-int	display_(t_glb *glb)
+int	display(t_glb *glb)
 {
 	raycasting_loop(glb);
 	launcher_events(glb);

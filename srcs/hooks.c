@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:47:49 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/07/11 16:52:39 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/11 16:59:37 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	key_release(int keycode, t_glb *glb)
 
 void	hooks(t_glb *glb)
 {
-	mlx_loop_hook(glb->mlx.window, &display_, glb);
+	mlx_loop_hook(glb->mlx.window, display, glb);
 	mlx_hook(glb->mlx.window, KeyPress, 1L << 0, key_press, glb);
 	mlx_hook(glb->mlx.window, KeyRelease, 1L << 1, key_release, glb);
 	mlx_hook(glb->mlx.window, 17, 1L << 0, quit, glb);
