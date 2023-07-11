@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils00.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:44:24 by sdanel            #+#    #+#             */
-/*   Updated: 2023/06/30 13:54:02 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/07/11 16:41:22 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	invalid_atoi(t_map *map, int malloc)
 		freetab(map->f);
 		freetab(map->c);
 	}
-	exit_parserror(map, "Error\nInvalid color id");
+	exit_parserror(map, "Error\nInvalid color id\n");
 	return ;
 }
 

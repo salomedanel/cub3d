@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/11 16:20:19 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/11 16:53:16 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ t_image		init_img(void *glb);
 void		pixel_put(t_image *img, int x, int y, int color);
 
 //display
-int			display(t_glb *glb);
+int			display_(t_glb *glb);
 
 // free00
 void		freetab(char **table);
