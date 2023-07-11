@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/11 11:54:32 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/11 16:20:19 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ typedef	struct	s_mlx
 {
 	void	*mlx;
 	void	*window;
-	void	*minimap;
-	void	*img_wall;
-	void	*img_floor;
-	void	*img_player;
+	// void	*minimap;
+	// void	*img_wall;
+	// void	*img_floor;
+	// void	*img_player;
 	int		height;
 	int		length;
 }			t_mlx;
@@ -75,6 +75,7 @@ typedef struct s_rc
 	int		lineHeight;
 	int		drawStart;
 	int		drawEnd;
+	int		cmds[6];
 	double	posX;
 	double	posY;
 	double	newPosX;
@@ -106,6 +107,17 @@ typedef struct	s_image
 	int		line_length;
 	int		endian;
 }			t_image;
+
+typedef union	s_color
+{
+	int	hex;
+	struct
+	{
+		char	r;
+		char	g;
+		char	b;
+	};
+}	t_color;
 
 typedef	struct	s_glb
 {
@@ -167,15 +179,14 @@ void		init_window(t_glb *glb);
 
 //hooks
 int			key_press(int keycode, t_glb *glb);
+void		hooks(t_glb *glb);
 
 //image
-t_image		*init_img(void *glb);
+t_image		init_img(void *glb);
 void		pixel_put(t_image *img, int x, int y, int color);
 
-// minimap
-void		display_img(t_glb *glb, int i, int j, void *img);
+//display
 int			display(t_glb *glb);
-int			display_minimap(t_glb *glb);
 
 // free00
 void		freetab(char **table);
@@ -199,6 +210,11 @@ void		raycasting_loop(t_glb *glb);
 float   	get_deltadist(float raydir);
 
 //colors
+int			color_floor(t_glb *glb);
+int			color_ceiling(t_glb *glb);
+void		get_floor(t_glb *glb, int drawend, int x);
+void		get_ceiling(t_glb *glb, int drawstart, int x);
+
 
 //moves
 void		go_forward(t_glb *glb);

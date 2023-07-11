@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.c                                           :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 14:26:17 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/11 16:28:07 by tmichel-         ###   ########.fr       */
+/*   Created: 2023/07/11 15:12:28 by tmichel-          #+#    #+#             */
+/*   Updated: 2023/07/11 15:50:52 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_window(t_glb *glb)
+void	launcher_events(t_glb *glb)
 {
-	glb->mlx.window = mlx_new_window(glb->mlx.mlx, WIDTH, HEIGHT, "cub3d");
-	if (glb->mlx.window == NULL)
-		free(glb->mlx.mlx);
-	glb->img = init_img(glb->mlx.mlx);
-	hooks(glb);
-	mlx_loop(glb->mlx.mlx);
+	if (glb->rc.cmds[0])
+		go_forward(glb);
+	if (glb->rc.cmds[1])
+		go_backward(glb);
+	if (glb->rc.cmds[2])
+		go_left(glb);
+	if (glb->rc.cmds[3])
+		go_right(glb);
+	if (glb->rc.cmds[4])
+		rotate_left(glb);
+	if (glb->rc.cmds[5])
+		rotate_right(glb);
 }
 
+int	display(t_glb *glb)
+{
+	raycasting_loop(glb);
+	launcher_events(glb);
+	return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:22:56 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/11 11:44:41 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/11 16:05:25 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,9 @@ int	main(int argc, char **argv)
 	glb->map = map;
 	glb->mlx = mlx;
 	init_window(glb);
-	glb->img.img = init_img(glb->mlx.mlx);
 	// mlx_loop_hook(mlx.mlx, &display, glb);
-	mlx_hook(glb->mlx.window, 17, 1L << 0, quit, glb);
-	mlx_hook(glb->mlx.window, 2, 1L << 0, key_press, glb);
-	mlx_loop(glb->mlx.mlx);
+	// mlx_hook(glb->mlx.window, 17, 1L << 0, quit, glb);
+	// mlx_hook(glb->mlx.window, 2, 1L << 0, key_press, glb);
+	// mlx_loop(glb->mlx.mlx);
 	return (0);
 }

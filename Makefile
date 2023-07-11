@@ -24,6 +24,7 @@ SRC =	main \
 		moves \
 		rotations \
 		initialization \
+		display \
 				
 SRCS = $(addprefix ${DIRSRC}, $(addsuffix .c, ${SRC}))
 
