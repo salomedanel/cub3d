@@ -23,6 +23,7 @@ SRC =	main \
 		colors \
 		moves \
 		rotations \
+		initialization \
 				
 SRCS = $(addprefix ${DIRSRC}, $(addsuffix .c, ${SRC}))
 

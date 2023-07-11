@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/06 17:14:49 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/11 11:54:32 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,11 @@ int			len_map(t_map *map);
 void		fill_colors(t_map *map, int fc_malloc, char c);
 void		check_colors_value(t_map *map);
 int			check_emptyline(t_map *map);
+
+//initialization
+void		init_data(t_map *map, t_rc *rc);
+void		get_e_w(t_rc *rc);
+void		get_orientation_full(t_rc *rc);
 
 // window
 void		init_window(t_glb *glb);

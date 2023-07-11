@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:54:48 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/07/06 17:43:15 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/07 08:32:57 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	get_color()
+// int	get_color()
 
-void	get_floor(t_glb *glb, int drawend, int x)
-{
+// void	get_floor(t_glb *glb, int drawend, int x)
+// {
 	
-}
+// }

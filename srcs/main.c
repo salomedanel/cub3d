@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:22:56 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/06 12:37:54 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/11 11:44:41 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	init_data(t_map *map, t_rc *rc)
-{	
-	map->no = NULL;
-	map->so = NULL;
-	map->we = NULL;
-	map->ea = NULL;
-	rc->posX = 0;
-	rc->posY = 0;
-}
 
 int	check_file(char **argv, int file)
 {
@@ -77,7 +67,6 @@ int	parsing(t_map *map, char **argv)
 	check_mapchar(map);
 	get_playerpos(map, &rc, i);
 	map_outline(map, j);
-	//print_map(map->f_map);
 	return (0);
 }
 

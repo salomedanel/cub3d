@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 11:32:17 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/06 11:47:58 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/11 11:53:29 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int	get_playerpos(t_map *map, t_rc *rc, int counter)
 		return (exit_parserror2(map, "Error\nNo player\n"));
 	if (counter > 1)
 		return (exit_parserror2(map, "Error\nMultiple player positions\n"));
-	return (0);
+	return (get_orientation_full(rc), 0);
 }
 
 int	map_outline(t_map *map, int i)
