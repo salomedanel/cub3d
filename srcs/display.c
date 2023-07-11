@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:12:28 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/07/11 16:55:58 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/11 21:49:00 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void	launcher_events(t_glb *glb)
 {
-	if (glb->rc.cmds[0])
+	if (glb->rc->cmds[0])
 		go_forward(glb);
-	if (glb->rc.cmds[1])
+	if (glb->rc->cmds[1])
 		go_backward(glb);
-	if (glb->rc.cmds[2])
+	if (glb->rc->cmds[2])
 		go_left(glb);
-	if (glb->rc.cmds[3])
+	if (glb->rc->cmds[3])
 		go_right(glb);
-	if (glb->rc.cmds[4])
+	if (glb->rc->cmds[4])
 		rotate_left(glb);
-	if (glb->rc.cmds[5])
+	if (glb->rc->cmds[5])
 		rotate_right(glb);
 }
 
@@ -32,5 +32,6 @@ int	display(t_glb *glb)
 {
 	raycasting_loop(glb);
 	launcher_events(glb);
+	printf("je suis ici\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 14:52:08 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/11 15:57:45 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/11 21:50:07 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,21 @@
 
 // 	i = 0;
 // 	j = 0;
-// 	while (glb->map.f_map[i])
+// 	while (glb->map->f_map[i])
 // 	{
-// 		while (glb->map.f_map[i][j])
+// 		while (glb->map->f_map[i][j])
 // 		{
-// 			if (glb->map.f_map[i][j] == '1')
+// 			if (glb->map->f_map[i][j] == '1')
 // 				display_img(glb, i, j, glb->mlx.img_wall);
-// 			if (glb->map.f_map[i][j] == '0')
+// 			if (glb->map->f_map[i][j] == '0')
 // 				display_img(glb, i, j, glb->mlx.img_floor);
-// 			if (glb->map.f_map[i][j] == 'E')
+// 			if (glb->map->f_map[i][j] == 'E')
 // 				display_img(glb, i, j, glb->mlx.img_player);
-// 			if (glb->map.f_map[i][j] == 'W')
+// 			if (glb->map->f_map[i][j] == 'W')
 // 				display_img(glb, i, j, glb->mlx.img_player);
-// 			if (glb->map.f_map[i][j] == 'S')
+// 			if (glb->map->f_map[i][j] == 'S')
 // 				display_img(glb, i, j, glb->mlx.img_player);
-//             if (glb->map.f_map[i][j] == 'N')
+//             if (glb->map->f_map[i][j] == 'N')
 // 				display_img(glb, i, j, glb->mlx.img_player);
 // 			j++;
 // 		}

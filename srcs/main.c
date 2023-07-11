@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:22:56 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/11 16:05:25 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/11 23:36:50 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,49 +49,46 @@ int	check_arg(int argc, char **argv)
 	}
 }
 
-int	parsing(t_map *map, char **argv)
+t_rc	*parsing(t_map *map, char **argv)
 {
-	t_rc	rc;
+	t_rc	*rc;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = -1;
+	rc = malloc(sizeof(t_rc));
+	if (!rc)
+		return (0);
 	size_map(map);
 	get_map(map, argv);
-	parse_texture(map, i, &rc);
+	parse_texture(map, i, rc);
 	parse_texture_path(map);
 	parse_fc(map, i, j);
 	check_emptyline(map);
 	final_map(map, i);
 	check_mapchar(map);
-	get_playerpos(map, &rc, i);
+	get_playerpos(map, rc, i);
 	map_outline(map, j);
-	return (0);
+	return (rc);
 }
 
 int	main(int argc, char **argv)
 {
-	t_map	map;
-	t_mlx	mlx;
+	t_map	*map;
 	t_glb	*glb;
 
-	map.file = check_arg(argc, argv);
-	if (map.file < 0)
+	map = malloc(sizeof(t_map));
+	if (!map)
+		return (0);
+	map->file = check_arg(argc, argv);
+	if (map->file < 0)
 		return (-1);
-	parsing(&map, argv);
-	mlx.mlx = mlx_init();
-	if (mlx.mlx == NULL)
-		return (printf("Error\nPb init mlx\n"));
 	glb = malloc(sizeof(t_glb));
 	if (!glb)
 		return (0);
+	glb->rc = parsing(map, argv);
 	glb->map = map;
-	glb->mlx = mlx;
 	init_window(glb);
-	// mlx_loop_hook(mlx.mlx, &display, glb);
-	// mlx_hook(glb->mlx.window, 17, 1L << 0, quit, glb);
-	// mlx_hook(glb->mlx.window, 2, 1L << 0, key_press, glb);
-	// mlx_loop(glb->mlx.mlx);
 	return (0);
 }

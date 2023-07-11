@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 11:41:42 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/07/11 15:59:26 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/11 22:20:44 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,22 @@ void	init_data(t_map *map, t_rc *rc)
 {	
 	int	i;
 
-	i = -1;
+	i = 0;
 	map->no = NULL;
 	map->so = NULL;
 	map->we = NULL;
 	map->ea = NULL;
-	while (rc->cmds[++i])
-		rc->cmds[i] = 0;
+	while (i < 6)
+		rc->cmds[i++] = 0;
 	rc->posX = 0;
 	rc->posY = 0;
+	rc->mapX = 0;
+	rc->mapY = 0;
 	rc->moveSpeed = 0.1;
 	rc->rayDirX = 0;
 	rc->rayDirY = 0;
+	rc->sideDistX = 0;
+	rc->sideDistY = 0;
 	rc->drawEnd = 0;
 	rc->drawStart = 0;
 	rc->cameraX	= 0;

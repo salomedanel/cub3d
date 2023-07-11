@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/11 16:56:09 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/11 23:30:09 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,6 @@ typedef struct s_map
 	int		height;
 	int		length;
 }			t_map;
-
-typedef	struct	s_mlx
-{
-	void	*mlx;
-	void	*window;
-	// void	*minimap;
-	// void	*img_wall;
-	// void	*img_floor;
-	// void	*img_player;
-	int		height;
-	int		length;
-}			t_mlx;
 
 typedef struct s_rc
 {
@@ -121,17 +109,18 @@ typedef union	s_color
 
 typedef	struct	s_glb
 {
-	t_map	map;
-	t_mlx	mlx;
-	t_rc	rc;
-	t_image	img;
+	void	*mlx;
+	void	*window;
+	t_rc	*rc;
+	t_image	*img;
+	t_map	*map;
 }				t_glb;
 
 // main
 void		init_data(t_map *map, t_rc *rc);
 int			check_file(char **argv, int file);
 int			check_arg(int argc, char **argv);
-int			parsing(t_map *map, char **argv);
+t_rc		*parsing(t_map *map, char **argv);
 
 // get_map
 int			start_map(t_map *map);
@@ -182,7 +171,7 @@ int			key_press(int keycode, t_glb *glb);
 void		hooks(t_glb *glb);
 
 //image
-t_image		init_img(void *glb);
+t_image		*init_img(void *glb);
 void		pixel_put(t_image *img, int x, int y, int color);
 
 //display
@@ -197,7 +186,6 @@ int			quit(t_glb *glb);
 
 //free01
 void		free_map(t_map *map);
-void		free_mlx(t_mlx *mlx);
 
 //raycasting
 void		init_rc(t_glb *glb, int i);
