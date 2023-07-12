@@ -1,9 +1,10 @@
 SO ./texture/brick.xpm
+F 12,255,12
+
 NO ./texture/floor.xpm
 EA ./texture/pwall.xpm
 WE ./texture/exit.xpm
-F 255,0,0
-C 0,128,0
+C 0,128,255
 
 1  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 1  0 0 0 0 0 0 0 0 0  1 1 0 0 0 0 0 0 01

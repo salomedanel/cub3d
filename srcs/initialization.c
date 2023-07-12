@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 11:41:42 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/07/11 22:20:44 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:01:19 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@ void	init_data(t_map *map, t_rc *rc)
 	map->ea = NULL;
 	while (i < 6)
 		rc->cmds[i++] = 0;
-	rc->posX = 0;
-	rc->posY = 0;
-	rc->mapX = 0;
-	rc->mapY = 0;
 	rc->moveSpeed = 0.1;
 	rc->rayDirX = 0;
 	rc->rayDirY = 0;
@@ -34,9 +30,6 @@ void	init_data(t_map *map, t_rc *rc)
 	rc->sideDistY = 0;
 	rc->drawEnd = 0;
 	rc->drawStart = 0;
-	rc->cameraX	= 0;
-	rc->deltaDistX = cos(rc->cameraX) * 5;
-	rc->deltaDistY = sin(rc->cameraX) * 5;
 	rc->perpWallDist = 0;
 	rc->side = 0;
 	rc->stepX = 0;

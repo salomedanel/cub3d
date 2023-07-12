@@ -13,7 +13,6 @@ SRC =	main \
 		parsing_utils00 \
 		parsing_utils01 \
 		window \
-		minimap \
 		free00 \
 		free01 \
 		hooks \

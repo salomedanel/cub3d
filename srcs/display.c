@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:12:28 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/07/11 21:49:00 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:02:24 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ int	display(t_glb *glb)
 {
 	raycasting_loop(glb);
 	launcher_events(glb);
-	printf("je suis ici\n");
 	return (0);
 }

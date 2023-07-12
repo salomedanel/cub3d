@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/12 12:00:41 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:14:22 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define FLOOR "./texture/pwall.xpm"
 # define PLAYER "./texture/exit.xpm"
 # define WIDTH 1000
-# define HEIGHT 1000
+# define HEIGHT 500
 
 
 typedef struct s_map
@@ -64,27 +64,27 @@ typedef struct s_rc
 	int		drawStart;
 	int		drawEnd;
 	int		cmds[6];
-	double	posX;
-	double	posY;
-	double	newPosX;
-	double	newPosY;
-	double	dirX;
-	double	dirY;
-	double	oldDirX;
-	double	planeX;
-	double	planeY;
-	double	oldPlaneX;
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	sideDistX;
-	double	sideDistY;
-	double	moveSpeed;
-	double	perpWallDist;
-	double	time;
-	double	oldtime;
+	float	posX;
+	float	posY;
+	float	newPosX;
+	float	newPosY;
+	float	dirX;
+	float	dirY;
+	float	oldDirX;
+	float	planeX;
+	float	planeY;
+	float	oldPlaneX;
+	float	cameraX;
+	float	rayDirX;
+	float	rayDirY;
+	float	deltaDistX;
+	float	deltaDistY;
+	float	sideDistX;
+	float	sideDistY;
+	float	moveSpeed;
+	float	perpWallDist;
+	float	time;
+	float	oldtime;
 }		t_rc;
 
 // typedef struct	s_image

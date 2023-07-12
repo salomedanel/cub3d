@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:26:17 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/12 11:55:40 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:14:18 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,3 @@ void	init_window(t_glb *glb)
 	hooks(glb);
 	mlx_loop(glb->mlx);
 }
-
