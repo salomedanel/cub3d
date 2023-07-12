@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:26:17 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/11 23:34:06 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:55:40 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,10 @@ void	init_window(t_glb *glb)
 		mlx_destroy_display(glb->mlx);
 		free(glb->mlx);
 	}
-	glb->img = malloc(sizeof(t_image));
-	if (!glb->img)
-		return ;
-	glb->img->img = mlx_new_image(glb->mlx, WIDTH, HEIGHT);
-	glb->img->addr = mlx_get_data_addr(glb->img->img,
-			&glb->img->bits_per_pixel, &glb->img->line_length,
-			&glb->img->endian);
+	glb->img = mlx_new_image(glb->mlx, WIDTH, HEIGHT);
+	glb->addr = mlx_get_data_addr(glb->img,
+			&glb->bits_per_pixel, &glb->line_length,
+			&glb->endian);
 	hooks(glb);
 	mlx_loop(glb->mlx);
 }

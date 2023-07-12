@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:25:50 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/07/11 22:51:25 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:50:40 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	raycasting_loop(t_glb *glb)
 		draw_on_screen(glb);
 		get_floor(glb, glb->rc->drawEnd, i);
 		get_ceiling(glb, glb->rc->drawStart, i);
-		pixel_put(glb->img, i, glb->rc->drawStart, 0x00FF00);
+		pixel_put(glb, i, glb->rc->drawStart, 0x00FF00);
 	}
-	mlx_put_image_to_window(glb->mlx, glb->window, glb->img, 0, 0);
+	mlx_put_image_to_window(glb->mlx, glb->window, glb, 0, 0);
 }

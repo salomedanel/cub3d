@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/11 23:30:09 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:00:41 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,18 +87,18 @@ typedef struct s_rc
 	double	oldtime;
 }		t_rc;
 
-typedef struct	s_image
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}			t_image;
+// typedef struct	s_image
+// {
+// 	void	*img;
+// 	char	*addr;
+// 	int		bits_per_pixel;
+// 	int		line_length;
+// 	int		endian;
+// }			t_image;
 
 typedef union	s_color
 {
-	int	hex;
+	unsigned int	hex;
 	struct
 	{
 		char	r;
@@ -111,8 +111,13 @@ typedef	struct	s_glb
 {
 	void	*mlx;
 	void	*window;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 	t_rc	*rc;
-	t_image	*img;
+	// t_image	*img;
 	t_map	*map;
 }				t_glb;
 
@@ -171,8 +176,8 @@ int			key_press(int keycode, t_glb *glb);
 void		hooks(t_glb *glb);
 
 //image
-t_image		*init_img(void *glb);
-void		pixel_put(t_image *img, int x, int y, int color);
+// t_image		*init_img(void *glb);
+void		pixel_put(t_glb *glb, int x, int y, int color);
 
 //display
 int			display(t_glb *glb);

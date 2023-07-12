@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:54:48 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/07/11 23:08:06 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:05:33 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	get_floor(t_glb *glb, int drawend, int x)
 	color = color_floor(glb);
 	y = drawend - 1;
 	while (++y < HEIGHT)
-		pixel_put(glb->img, x, y, color);
+		pixel_put(glb, x, y, color);
 }
 
 void	get_ceiling(t_glb *glb, int drawstart, int x)
@@ -52,6 +52,7 @@ void	get_ceiling(t_glb *glb, int drawstart, int x)
 
 	color = color_floor(glb);
 	y = -1;
+	printf("glb->line_length is %d\n", glb->line_length);
 	while (++y < drawstart)
-		pixel_put(glb->img, x, y, color);
+		pixel_put(glb, x, y, color);
 }
