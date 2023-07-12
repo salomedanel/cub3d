@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/12 13:14:22 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/12 18:04:19 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@
 # define PLAYER "./texture/exit.xpm"
 # define WIDTH 1000
 # define HEIGHT 500
+# define TEXWIDTH 64
+# define TEXHEIGHT 64
+# define W 119
+# define S 115
+# define A 97
+# define D 100
 
 
 typedef struct s_map
@@ -64,37 +70,32 @@ typedef struct s_rc
 	int		drawStart;
 	int		drawEnd;
 	int		cmds[6];
-	float	posX;
-	float	posY;
-	float	newPosX;
-	float	newPosY;
-	float	dirX;
-	float	dirY;
-	float	oldDirX;
-	float	planeX;
-	float	planeY;
-	float	oldPlaneX;
-	float	cameraX;
-	float	rayDirX;
-	float	rayDirY;
-	float	deltaDistX;
-	float	deltaDistY;
-	float	sideDistX;
-	float	sideDistY;
-	float	moveSpeed;
-	float	perpWallDist;
-	float	time;
-	float	oldtime;
+	int		texX;
+	int		texY;
+	double	posX;
+	double	posY;
+	double	newPosX;
+	double	newPosY;
+	double	dirX;
+	double	dirY;
+	double	oldDirX;
+	double	planeX;
+	double	planeY;
+	double	oldPlaneX;
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	sideDistX;
+	double	sideDistY;
+	double	moveSpeed;
+	double	perpWallDist;
+	double	wallX;
+	double	step;
+	double	texPos;
+	
 }		t_rc;
-
-// typedef struct	s_image
-// {
-// 	void	*img;
-// 	char	*addr;
-// 	int		bits_per_pixel;
-// 	int		line_length;
-// 	int		endian;
-// }			t_image;
 
 typedef union	s_color
 {
@@ -116,8 +117,27 @@ typedef	struct	s_glb
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	void	*no_img;
+	char	*no_addr;
+	int		no_bits_per_pixel;
+	int		no_line_length;
+	int		no_endian;
+	void	*ea_img;
+	char	*ea_addr;
+	int		ea_bits_per_pixel;
+	int		ea_line_length;
+	int		ea_endian;
+	void	*so_img;
+	char	*so_addr;
+	int		so_bits_per_pixel;
+	int		so_line_length;
+	int		so_endian;
+	void	*we_img;
+	char	*we_addr;
+	int		we_bits_per_pixel;
+	int		we_line_length;
+	int		we_endian;
 	t_rc	*rc;
-	// t_image	*img;
 	t_map	*map;
 }				t_glb;
 
@@ -203,8 +223,9 @@ void		raycasting_loop(t_glb *glb);
 float   	get_deltadist(float raydir);
 
 //colors
-int			color_floor(t_glb *glb);
-int			color_ceiling(t_glb *glb);
+int			get_tex_color(char *texData, int texx, int texy, int bpp);
+void		get_tex(t_glb *glb);
+void		get_wall(t_glb *glb, int x);
 void		get_floor(t_glb *glb, int drawend, int x);
 void		get_ceiling(t_glb *glb, int drawstart, int x);
 

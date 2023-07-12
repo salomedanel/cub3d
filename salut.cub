@@ -1,9 +1,9 @@
-SO ./texture/brick.xpm
+SO ./texture/redbrick.xpm
 F 12,255,12
 
-NO ./texture/floor.xpm
-EA ./texture/pwall.xpm
-WE ./texture/exit.xpm
+NO ./texture/bluestone.xpm
+EA ./texture/mossy.xpm
+WE ./texture/colorstone_1.xpm
 C 0,128,255
 
 1  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
@@ -17,7 +17,7 @@ C 0,128,255
 1 1 0 0 0 0      	0 0 1 1 0 1 0 1 
 1 0 0 0 0 0 0 0 0 0  	0 0 0 0 0 0 1
 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 
-1 0 0 0 S 0 0 0 0 0    0 0 0 0 0 0 1 1
+1 0 0 0 W 0 0 0 0 0    0 0 0 0 0 0 1 1
 1 1 0 0 0 0 0 0 1  1 0 1 0 	1	 0 1 1 1
 1 1 1 1 0 1 1 1 1 1 1 1 0 1 0 1 	1 1 
 1 1 1 1 1 1 1 1 1 1 1 1 1 1	 1 1 1	 1 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:22:56 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/11 23:36:50 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/12 18:21:07 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,11 @@ int	main(int argc, char **argv)
 {
 	t_map	*map;
 	t_glb	*glb;
+	// int	i;
+	// int	j;
 
+	// i = 0;
+	// j = 0;
 	map = malloc(sizeof(t_map));
 	if (!map)
 		return (0);
@@ -89,6 +93,14 @@ int	main(int argc, char **argv)
 		return (0);
 	glb->rc = parsing(map, argv);
 	glb->map = map;
+	// while (i < glb->map->length)
+	// {
+	// 	j = -1;
+	// 	while (++j < glb->map->height)
+	// 		printf("%c", glb->map->f_map[i][j]);
+	// 	printf("\n");
+	// 	i++;
+	// }
 	init_window(glb);
 	return (0);
 }

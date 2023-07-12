@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:25:50 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/07/12 14:36:15 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:58:12 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void	step_sidedist(t_glb *glb)
 		glb->rc->stepY = 1;
 		glb->rc->sideDistY = (glb->rc->mapY +1.0 - glb->rc->posY) * glb->rc->deltaDistY;	
 	}
-	glb->rc->hit = 0;
 }
 
 void	dda(t_glb *glb)
 {
+	glb->rc->hit = 0;
 	while (glb->rc->hit == 0)
 	{
 		if (glb->rc->sideDistX < glb->rc->sideDistY)
@@ -72,26 +72,16 @@ void	dda(t_glb *glb)
 void	draw_on_screen(t_glb *glb)
 {
 	if (!glb->rc->side)
-	{
 		glb->rc->perpWallDist = glb->rc->sideDistX - glb->rc->deltaDistX;
-		printf("sideDistX is %f\n", glb->rc->sideDistX);
-		printf("deltaDistX is %f\n", glb->rc->deltaDistX);
-	}
 	else
 		glb->rc->perpWallDist = glb->rc->sideDistY - glb->rc->deltaDistY;
-	// if (glb->rc->perpWallDist == 0)
-	// 	glb->rc->perpWallDist = 1;
 	glb->rc->lineHeight = (int)(HEIGHT / glb->rc->perpWallDist);
-	// printf("lineHeight is %d\n", glb->rc->lineHeight);
-	// printf("perpWallDist is %f\n", glb->rc->perpWallDist);
 	glb->rc->drawStart = -glb->rc->lineHeight / 2 + HEIGHT / 2;
-	// printf("drawstart is %d\n", glb->rc->drawStart);
 	if (glb->rc->drawStart < 0)
 		glb->rc->drawStart = 0;
 	glb->rc->drawEnd = glb->rc->lineHeight / 2 + HEIGHT / 2;
 	if (glb->rc->drawEnd > HEIGHT)
 		glb->rc->drawEnd = HEIGHT - 1;
-	// printf("drawend is %d\n", glb->rc->drawEnd);
 }
 
 void	raycasting_loop(t_glb *glb)
@@ -105,6 +95,8 @@ void	raycasting_loop(t_glb *glb)
 		step_sidedist(glb);
 		dda(glb);
 		draw_on_screen(glb);
+		get_tex(glb);
+		get_wall(glb, i);
 		get_floor(glb, glb->rc->drawEnd, i);
 		get_ceiling(glb, glb->rc->drawStart, i);
 	}
