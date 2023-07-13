@@ -1,10 +1,10 @@
 F 0,2,255
-SO ./texture/brick.xpm
-NO ./texture/floor.xpm
-EA ./texture/pwall.xpm
+SO ./texture/blocbuster.xpm
+NO ./texture/climbwall00.xpm
+EA ./texture/magala.xpm
 C 233,0,12
 
-WE ./texture/exit.xpm
+WE ./texture/climbwall01.xpm
 
 1111111111111111111
 1100000001100000001
