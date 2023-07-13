@@ -1,7 +1,7 @@
 F 0,2,255
 SO ./texture/blocbuster.xpm
 NO ./texture/climbwall00.xpm
-EA ./texture/magala.xpm
+EA ./texture/redbrick.xpm
 C 233,0,12
 
 WE ./texture/climbwall01.xpm
