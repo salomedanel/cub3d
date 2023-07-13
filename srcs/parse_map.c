@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 11:32:17 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/12 17:07:11 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/13 08:38:25 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	get_playerpos(t_map *map, t_rc *rc, int counter)
 			if (map->f_map[i][j] == 'N' || map->f_map[i][j] == 'S'
 				|| map->f_map[i][j] == 'E' || map->f_map[i][j] == 'W')
 			{
-				rc->posX = i + 0.5 - map->startline;
+				rc->posX = i + 0.5;
 				rc->posY = j + 0.5;
 				rc->dir = map->f_map[i][j];
 				counter++;

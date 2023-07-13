@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:25:50 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/07/12 17:58:12 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/13 08:36:56 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ void	init_rc(t_glb *glb, int i)
 	glb->rc->cameraX = 2 * i / (float)WIDTH - 1;
 	glb->rc->rayDirX = glb->rc->dirX + glb->rc->planeX * glb->rc->cameraX;
 	glb->rc->rayDirY = glb->rc->dirY + glb->rc->planeY * glb->rc->cameraX;
-	glb->rc->mapX = (int)glb->rc->posX;
-	glb->rc->mapY = (int)glb->rc->posY;
+	glb->rc->mapX = abs((int)glb->rc->posX);
+	glb->rc->mapY = abs((int)glb->rc->posY);
 	glb->rc->deltaDistX = get_deltadist(glb->rc->rayDirX);
 	glb->rc->deltaDistY = get_deltadist(glb->rc->rayDirY);
+	// printf("posX = %f, posY = %f\n", glb->rc->posX, glb->rc->posY);
 }
 
 void	step_sidedist(t_glb *glb)

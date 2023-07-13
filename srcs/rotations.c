@@ -6,13 +6,13 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:27:34 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/07/11 21:49:18 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/13 08:45:24 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	rotate_right(t_glb *glb)
+void	rotate_left(t_glb *glb)
 {
 	glb->rc->oldDirX = glb->rc->dirX;
 	glb->rc->dirX = glb->rc->dirX 
@@ -26,7 +26,7 @@ void	rotate_right(t_glb *glb)
 		* sin(-glb->rc->moveSpeed) + glb->rc->planeY * cos(-glb->rc->moveSpeed);
 }
 
-void	rotate_left(t_glb *glb)
+void	rotate_right(t_glb *glb)
 {
 	glb->rc->oldDirX = glb->rc->dirX;
 	glb->rc->dirX = glb->rc->dirX 
