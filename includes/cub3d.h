@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/12 18:04:19 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:33:01 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,9 @@ typedef union	s_color
 	unsigned int	hex;
 	struct
 	{
-		char	r;
-		char	g;
-		char	b;
+		int	r;
+		int	g;
+		int	b;
 	};
 }	t_color;
 
@@ -195,10 +195,6 @@ void		init_window(t_glb *glb);
 int			key_press(int keycode, t_glb *glb);
 void		hooks(t_glb *glb);
 
-//image
-// t_image		*init_img(void *glb);
-void		pixel_put(t_glb *glb, int x, int y, int color);
-
 //display
 int			display(t_glb *glb);
 
@@ -219,8 +215,10 @@ void		dda(t_glb *glb);
 void		draw_on_screen(t_glb *glb);
 void		raycasting_loop(t_glb *glb);
 
-//raycasting_utils
+//utils
 float   	get_deltadist(float raydir);
+void		pixel_put(t_glb *glb, int x, int y, int color);
+int			convert_hexa_color(int red, int green, int blue);
 
 //colors
 int			get_tex_color(char *texData, int texx, int texy, int bpp);
@@ -228,7 +226,6 @@ void		get_tex(t_glb *glb);
 void		get_wall(t_glb *glb, int x);
 void		get_floor(t_glb *glb, int drawend, int x);
 void		get_ceiling(t_glb *glb, int drawstart, int x);
-
 
 //moves
 void		go_forward(t_glb *glb);

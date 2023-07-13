@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:25:50 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/07/13 08:36:56 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:29:15 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	init_rc(t_glb *glb, int i)
 	glb->rc->mapY = abs((int)glb->rc->posY);
 	glb->rc->deltaDistX = get_deltadist(glb->rc->rayDirX);
 	glb->rc->deltaDistY = get_deltadist(glb->rc->rayDirY);
-	// printf("posX = %f, posY = %f\n", glb->rc->posX, glb->rc->posY);
 }
 
 void	step_sidedist(t_glb *glb)
@@ -29,22 +28,26 @@ void	step_sidedist(t_glb *glb)
 	if (glb->rc->rayDirX < 0)
 	{
 		glb->rc->stepX = -1;
-		glb->rc->sideDistX = (glb->rc->posX - glb->rc->mapX) * glb->rc->deltaDistX;
+		glb->rc->sideDistX = (glb->rc->posX - glb->rc->mapX)
+			* glb->rc->deltaDistX;
 	}
 	else
 	{
 		glb->rc->stepX = 1;
-		glb->rc->sideDistX = (glb->rc->mapX + 1.0 - glb->rc->posX) * glb->rc->deltaDistX;	
+		glb->rc->sideDistX = (glb->rc->mapX + 1.0 - glb->rc->posX)
+			* glb->rc->deltaDistX;
 	}
 	if (glb->rc->rayDirY < 0)
 	{
 		glb->rc->stepY = -1;
-		glb->rc->sideDistY = (glb->rc->posY - glb->rc->mapY) * glb->rc->deltaDistY;
+		glb->rc->sideDistY = (glb->rc->posY - glb->rc->mapY)
+			* glb->rc->deltaDistY;
 	}
 	else
 	{
 		glb->rc->stepY = 1;
-		glb->rc->sideDistY = (glb->rc->mapY +1.0 - glb->rc->posY) * glb->rc->deltaDistY;	
+		glb->rc->sideDistY = (glb->rc->mapY +1.0 - glb->rc->posY)
+			* glb->rc->deltaDistY;
 	}
 }
 
@@ -73,22 +76,28 @@ void	dda(t_glb *glb)
 void	draw_on_screen(t_glb *glb)
 {
 	if (!glb->rc->side)
-		glb->rc->perpWallDist = glb->rc->sideDistX - glb->rc->deltaDistX;
+		glb->rc->perpWallDist = (glb->rc->mapX - glb->rc->posX
+				+ (1 - glb->rc->stepX) / 2) / glb->rc->rayDirX;
 	else
-		glb->rc->perpWallDist = glb->rc->sideDistY - glb->rc->deltaDistY;
+		glb->rc->perpWallDist = (glb->rc->mapY - glb->rc->posY
+				+ (1 - glb->rc->stepY) / 2) / glb->rc->rayDirY;
 	glb->rc->lineHeight = (int)(HEIGHT / glb->rc->perpWallDist);
 	glb->rc->drawStart = -glb->rc->lineHeight / 2 + HEIGHT / 2;
 	if (glb->rc->drawStart < 0)
 		glb->rc->drawStart = 0;
+	if (glb->rc->drawStart > HEIGHT)
+		glb->rc->drawStart = HEIGHT - 1;
 	glb->rc->drawEnd = glb->rc->lineHeight / 2 + HEIGHT / 2;
-	if (glb->rc->drawEnd > HEIGHT)
+	if (glb->rc->drawEnd >= HEIGHT)
 		glb->rc->drawEnd = HEIGHT - 1;
+	if (glb->rc->drawEnd < 0)
+		glb->rc->drawEnd = 0;
 }
 
 void	raycasting_loop(t_glb *glb)
 {
 	int	i;
-	
+
 	i = -1;
 	while (++i < WIDTH)
 	{

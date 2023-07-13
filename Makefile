@@ -17,8 +17,7 @@ SRC =	main \
 		free01 \
 		hooks \
 		raycasting \
-		raycasting_utils \
-		image \
+		utils \
 		colors \
 		moves \
 		rotations \

@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:47:49 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/07/12 18:06:35 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:25:23 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ void	key_release_norm(int keycode, t_glb *glb)
 {
 	if (keycode == XK_d)
 	{
-		if(glb->rc->cmds[3])
+		if (glb->rc->cmds[3])
 			glb->rc->cmds[3] = 0;
 	}
 	if (keycode == XK_Left)
 	{
-		if(glb->rc->cmds[4])
+		if (glb->rc->cmds[4])
 			glb->rc->cmds[4] = 0;
 	}
 	if (keycode == XK_Right)
 	{
-		if(glb->rc->cmds[5])
+		if (glb->rc->cmds[5])
 			glb->rc->cmds[5] = 0;
 	}	
 }
@@ -54,17 +54,17 @@ int	key_release(int keycode, t_glb *glb)
 {
 	if (keycode == XK_w)
 	{
-		if(glb->rc->cmds[0])
+		if (glb->rc->cmds[0])
 			glb->rc->cmds[0] = 0;
 	}
 	if (keycode == XK_s)
 	{
-		if(glb->rc->cmds[1])
+		if (glb->rc->cmds[1])
 			glb->rc->cmds[1] = 0;
 	}
 	if (keycode == XK_a)
 	{
-		if(glb->rc->cmds[2])
+		if (glb->rc->cmds[2])
 			glb->rc->cmds[2] = 0;
 	}
 	key_release_norm(keycode, glb);
