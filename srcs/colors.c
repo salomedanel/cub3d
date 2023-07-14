@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:54:48 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/07/13 17:06:36 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/14 10:51:13 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,20 @@ int	get_tex_color(char *texData, int texx, int texy, int bpp)
 void	get_tex(t_glb *glb)
 {
 	if (!glb->rc->side)
-		glb->rc->wallX = glb->rc->posY
-			+ glb->rc->perpWallDist * glb->rc->rayDirY;
+		glb->rc->wallx = glb->rc->posy
+			+ glb->rc->perpwalldist * glb->rc->raydiry;
 	else
-		glb->rc->wallX = glb->rc->posX
-			+ glb->rc->perpWallDist * glb->rc->rayDirX;
-	glb->rc->wallX -= floor(glb->rc->wallX);
-	glb->rc->texX = (int)(glb->rc->wallX * (double)TEXWIDTH);
-	if (!glb->rc->side && glb->rc->rayDirX > 0)
-		glb->rc->texX = TEXWIDTH - glb->rc->texX - 1;
-	if (glb->rc->side && glb->rc->rayDirY < 0)
-		glb->rc->texX = TEXWIDTH - glb->rc->texX - 1;
-	glb->rc->step = 1.0 * TEXHEIGHT / glb->rc->lineHeight;
-	glb->rc->texPos = (glb->rc->drawStart - HEIGHT / 2
-			+ glb->rc->lineHeight / 2) * glb->rc->step;
+		glb->rc->wallx = glb->rc->posx
+			+ glb->rc->perpwalldist * glb->rc->raydirx;
+	glb->rc->wallx -= floor(glb->rc->wallx);
+	glb->rc->texx = (int)(glb->rc->wallx * (double)TEXWIDTH);
+	if (!glb->rc->side && glb->rc->raydirx > 0)
+		glb->rc->texx = TEXWIDTH - glb->rc->texx - 1;
+	if (glb->rc->side && glb->rc->raydiry < 0)
+		glb->rc->texx = TEXWIDTH - glb->rc->texx - 1;
+	glb->rc->step = 1.0 * TEXHEIGHT / glb->rc->lineheight;
+	glb->rc->texpos = (glb->rc->drawstart - HEIGHT / 2
+			+ glb->rc->lineheight / 2) * glb->rc->step;
 }
 
 void	get_wall(t_glb *glb, int x)
@@ -52,23 +52,23 @@ void	get_wall(t_glb *glb, int x)
 	int	color;
 	int	y;
 
-	y = glb->rc->drawStart;
-	while (y < glb->rc->drawEnd)
+	y = glb->rc->drawstart;
+	while (y < glb->rc->drawend)
 	{
-		glb->rc->texY = (int)glb->rc->texPos & (TEXHEIGHT - 1);
-		glb->rc->texPos += glb->rc->step;
-		if (!glb->rc->side && glb->rc->rayDirX < 0)
-			color = get_tex_color(glb->no_addr, glb->rc->texX,
-					glb->rc->texY, glb->no_bits_per_pixel);
-		if (!glb->rc->side && glb->rc->rayDirX > 0)
-			color = get_tex_color(glb->so_addr, glb->rc->texX,
-					glb->rc->texY, glb->so_bits_per_pixel);
-		if (glb->rc->side && glb->rc->rayDirY < 0)
-			color = get_tex_color(glb->we_addr, glb->rc->texX,
-					glb->rc->texY, glb->we_bits_per_pixel);
-		if (glb->rc->side && glb->rc->rayDirY > 0)
-			color = get_tex_color(glb->ea_addr, glb->rc->texX,
-					glb->rc->texY, glb->ea_bits_per_pixel);
+		glb->rc->texy = (int)glb->rc->texpos & (TEXHEIGHT - 1);
+		glb->rc->texpos += glb->rc->step;
+		if (!glb->rc->side && glb->rc->raydirx < 0)
+			color = get_tex_color(glb->no_addr, glb->rc->texx,
+					glb->rc->texy, glb->no_bits_per_pixel);
+		if (!glb->rc->side && glb->rc->raydirx > 0)
+			color = get_tex_color(glb->so_addr, glb->rc->texx,
+					glb->rc->texy, glb->so_bits_per_pixel);
+		if (glb->rc->side && glb->rc->raydiry < 0)
+			color = get_tex_color(glb->we_addr, glb->rc->texx,
+					glb->rc->texy, glb->we_bits_per_pixel);
+		if (glb->rc->side && glb->rc->raydiry > 0)
+			color = get_tex_color(glb->ea_addr, glb->rc->texx,
+					glb->rc->texy, glb->ea_bits_per_pixel);
 		pixel_put(glb, x, y, color);
 		y++;
 	}

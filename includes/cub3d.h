@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:23:46 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/13 17:29:24 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/14 10:58:47 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 # define A 97
 # define D 100
 
-
 typedef struct s_map
 {
 	int		file;
@@ -60,44 +59,43 @@ typedef struct s_map
 typedef struct s_rc
 {
 	char	dir;
-	int		mapX;
-	int		mapY;
-	int		stepX;
-	int		stepY;
+	int		mapx;
+	int		mapy;
+	int		stepx;
+	int		stepy;
 	int		hit;
 	int		side;
-	int		lineHeight;
-	int		drawStart;
-	int		drawEnd;
+	int		lineheight;
+	int		drawstart;
+	int		drawend;
 	int		cmds[6];
-	int		texX;
-	int		texY;
-	double	posX;
-	double	posY;
-	double	newPosX;
-	double	newPosY;
-	double	dirX;
-	double	dirY;
-	double	oldDirX;
-	double	planeX;
-	double	planeY;
-	double	oldPlaneX;
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	sideDistX;
-	double	sideDistY;
-	double	moveSpeed;
-	double	perpWallDist;
-	double	wallX;
+	int		texx;
+	int		texy;
+	double	posx;
+	double	posy;
+	double	newposx;
+	double	newposy;
+	double	dirx;
+	double	diry;
+	double	olddirx;
+	double	planex;
+	double	planey;
+	double	oldplanex;
+	double	camerax;
+	double	raydirx;
+	double	raydiry;
+	double	deltadistx;
+	double	deltadisty;
+	double	sidedistx;
+	double	sidedisty;
+	double	movespeed;
+	double	perpwalldist;
+	double	wallx;
 	double	step;
-	double	texPos;
-	
-}		t_rc;
+	double	texpos;
+}	t_rc;
 
-typedef union	s_color
+typedef union s_color
 {
 	unsigned int	hex;
 	struct
@@ -108,7 +106,7 @@ typedef union	s_color
 	};
 }	t_color;
 
-typedef	struct	s_glb
+typedef struct s_glb
 {
 	void	*mlx;
 	void	*window;
@@ -216,7 +214,7 @@ void		draw_on_screen(t_glb *glb);
 void		raycasting_loop(t_glb *glb);
 
 //utils
-float   	get_deltadist(float raydir);
+float		get_deltadist(float raydir);
 void		pixel_put(t_glb *glb, int x, int y, int color);
 int			convert_hexa_color(int red, int green, int blue);
 

@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:44:24 by sdanel            #+#    #+#             */
-/*   Updated: 2023/07/13 17:32:49 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/14 10:55:16 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,29 +41,29 @@ void	invalid_atoi(t_map *map, int malloc)
 	return ;
 }
 
-int    ft_unsigned_atoi(t_map *map, const char *nptr, int malloc)
+int	ft_unsigned_atoi(t_map *map, const char *nptr, int malloc)
 {
-    int    res;
-    int    i;
+	int	res;
+	int	i;
 
-    res = 0;
-    i = 0;
-    if (nptr[i] && nptr[i] == '-')
-        invalid_atoi(map, malloc);
-    while (nptr[i] == ' ')
-        i++;
-    while (nptr[i])
-    {
-        if ((nptr[i] < '0' || nptr[i] > '9') && nptr[i] != '\n')
-            invalid_atoi(map, malloc);
-        i++;
-    }
-    i = -1;
-    while (nptr[++i] >= '0' && nptr[i] <= '9')
-        res = res * 10 + (nptr[i] - '0');
-    while (nptr[i] == ' ')
-        i++;
-    return (res);
+	res = 0;
+	i = 0;
+	if (nptr[i] && nptr[i] == '-')
+		invalid_atoi(map, malloc);
+	while (nptr[i] == ' ')
+		i++;
+	while (nptr[i])
+	{
+		if ((nptr[i] < '0' || nptr[i] > '9') && nptr[i] != '\n')
+			invalid_atoi(map, malloc);
+		i++;
+	}
+	i = -1;
+	while (nptr[++i] >= '0' && nptr[i] <= '9')
+		res = res * 10 + (nptr[i] - '0');
+	while (nptr[i] == ' ')
+		i++;
+	return (res);
 }
 
 void	print_map(char **map)

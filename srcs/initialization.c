@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 11:41:42 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/07/13 16:24:45 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/07/14 10:50:52 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,36 +23,36 @@ void	init_data(t_map *map, t_rc *rc)
 	map->ea = NULL;
 	while (i < 6)
 		rc->cmds[i++] = 0;
-	rc->moveSpeed = 0.02;
-	rc->rayDirX = 0;
-	rc->rayDirY = 0;
-	rc->sideDistX = 0;
-	rc->sideDistY = 0;
-	rc->drawEnd = 0;
-	rc->drawStart = 0;
-	rc->perpWallDist = 0.0;
+	rc->movespeed = 0.02;
+	rc->raydirx = 0;
+	rc->raydiry = 0;
+	rc->sidedistx = 0;
+	rc->sidedisty = 0;
+	rc->drawend = 0;
+	rc->drawstart = 0;
+	rc->perpwalldist = 0.0;
 	rc->side = 0;
-	rc->stepX = 0;
-	rc->stepY = 0;
+	rc->stepx = 0;
+	rc->stepy = 0;
 	rc->hit = 0;
-	rc->lineHeight = 0;
+	rc->lineheight = 0;
 }
 
 void	get_e_w(t_rc *rc)
 {
 	if (rc->dir == 'E')
 	{
-		rc->dirX = 0;
-		rc->dirY = 1;
-		rc->planeX = 0.66;
-		rc->planeY = 0;
+		rc->dirx = 0;
+		rc->diry = 1;
+		rc->planex = 0.66;
+		rc->planey = 0;
 	}
 	else if (rc->dir == 'W')
 	{
-		rc->dirX = 0;
-		rc->dirY = -1;
-		rc->planeX = -0.66;
-		rc->planeY = 0;
+		rc->dirx = 0;
+		rc->diry = -1;
+		rc->planex = -0.66;
+		rc->planey = 0;
 	}
 }
 
@@ -60,17 +60,17 @@ void	get_orientation_full(t_rc *rc)
 {
 	if (rc->dir == 'N')
 	{
-		rc->dirX = -1;
-		rc->dirY = 0;
-		rc->planeX = 0;
-		rc->planeY = 0.66;
+		rc->dirx = -1;
+		rc->diry = 0;
+		rc->planex = 0;
+		rc->planey = 0.66;
 	}
 	else if (rc->dir == 'S')
 	{
-		rc->dirX = 1;
-		rc->dirY = 0;
-		rc->planeX = 0;
-		rc->planeY = -0.66;
+		rc->dirx = 1;
+		rc->diry = 0;
+		rc->planex = 0;
+		rc->planey = -0.66;
 	}
 	else
 		get_e_w(rc);
